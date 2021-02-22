@@ -8,13 +8,23 @@ import {BookCategories, BookModel} from '../../models/models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookComponent implements OnInit {
-  basket: BookModel[];
-  book: BookModel = {
-    category: BookCategories.Horror,
+  bookShop: BookModel[];
+  book1: BookModel = {
+    category: BookCategories.Detective,
     createDate: 1613985163289,
-    description: 'Lorem ipsum dolor...',
+    description: '«Walk into the incredible true experience of Billy Hayes, and bring all the courage you can!»',
     isAvailable: true,
     name: 'The Midnight Express',
+    price: 100,
+    author: 'Agatha Christie ',
+  };
+
+  book2: BookModel = {
+    category: BookCategories.Fantasy,
+    createDate: 1613985163100,
+    description: '«From the smallest beginnings come the greatest legends»',
+    isAvailable: false,
+    name: 'The Hobbit',
     price: 100,
     author: 'Agatha Christie ',
   };
@@ -22,12 +32,15 @@ export class BookComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.bookShop = [this.book1, this.book2];
   }
 
   dateToString(time: number): Date {
     return new Date(time);
   }
 
-  onBuy(): void {}
+  onBuy(): void {
+    console.log('buy this book');
+  }
 
 }
