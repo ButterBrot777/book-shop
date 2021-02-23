@@ -1,4 +1,6 @@
 export interface BookModel {
+  id?: number;
+  isInCart?: boolean;
   name: string;
   description: string;
   price: number;

@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BookComponent } from './components/book/book.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { CartComponent } from './components/cart/cart.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { CartComponent } from './components/cart/cart.component';
     CartComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

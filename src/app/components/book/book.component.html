@@ -1,6 +1,6 @@
 <div
   class="book"
-  *ngFor="let book of bookShop"
+  *ngFor="let book of bookShop; index as i"
 >
   <h2>Book name: {{book.name}}</h2>
 
@@ -16,8 +16,8 @@
 
   <button
     class="btn"
-    [disabled]="!book.isAvailable"
-    (click)="onBuy()"
+    [disabled]="!book.isAvailable || book.isInCart"
+    (click)="buyBook(i)"
   >Buy</button>
 </div>
 

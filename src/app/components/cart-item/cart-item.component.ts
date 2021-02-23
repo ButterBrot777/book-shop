@@ -1,15 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
+import {BookModel} from '../../models/models';
 
 @Component({
   selector: 'app-cart-item',
   templateUrl: './cart-item.component.html',
-  styleUrls: ['./cart-item.component.scss']
+  styleUrls: ['./cart-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+  // todo: change to onPush strategy
 })
-export class CartItemComponent implements OnInit {
+export class CartItemComponent {
+  @Input() cart: BookModel[];
+  @Input() book: BookModel;
+  @Output() removeBookFromCart = new EventEmitter();
+  @Output() changed = new EventEmitter<boolean>();
+  count = 1;
 
   constructor() { }
 
-  ngOnInit(): void {
+  change(inc): number {
+    let count = 1;
+    inc ? count++ : count--;
+    this.count = count;
+    return count;
   }
+
+  // change(inc): void {
+  //   this.changed.emit(inc);
+  // }
 
 }

@@ -1,2 +1,12 @@
-<app-book></app-book>
-<app-cart></app-cart>
+<h1 #appTitle>{{title}}</h1>
+<p>{{testTitle}}</p>
+<app-book
+  [bookShop]="_bookShop"
+  (buy)="onBuy($event)"
+></app-book>
+
+<app-cart
+  class="flex"
+  [cart]="cart"
+  (removeFromCartAction)="setBackIntoShop($event)"
+></app-cart>
