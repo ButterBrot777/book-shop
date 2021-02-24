@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {CartItem} from './models/cart-models';
+import {BookModel} from '../book/models/book-model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import {CartItem} from './models/cart-models';
 export class CartService {
 
   // cart storage
-  cartProduct: CartItem[] = [];
+  cartProducts: CartItem[] = [];
 
   // cart items quantity
   totalQuantity: number;
@@ -18,10 +19,21 @@ export class CartService {
   constructor() { }
 
   getAllItemsInCart(): CartItem[] {
-    return this.cartProduct;
+    console.log('get all items in cart: ', this.cartProducts)
+    return this.cartProducts;
   }
 
-  addBook(id): void {}
+  addBook(id: number): void {
+    const isInCart = this.findBookInCart(id);
+
+    if (isInCart) {
+      console.log('abort');
+      return;
+    } else {
+      this.cartProducts.push({id, count: 1});
+      console.log('add book: ', this.cartProducts);
+    }
+  }
   removeBook(): void {}
   increaseQuantity(): void {}
   decreaseQuantity(): void {}
@@ -29,4 +41,10 @@ export class CartService {
 
   // recalculate total quantity and cart cost after each action
   updateCartData(): void {}
+
+  // check if book is already in the cart
+  findBookInCart(id: number): CartItem {
+    console.log('service check if in cart');
+    return this.cartProducts.find(item => item.id === id);
+  }
 }
