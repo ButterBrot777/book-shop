@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BookService} from '../../book.service';
 import {BookModel} from '../../models/book-model';
+import {CartService} from '../../../cart/cart.service';
 
 @Component({
   selector: 'app-book-list',
@@ -9,18 +10,18 @@ import {BookModel} from '../../models/book-model';
 })
 export class BookListComponent implements OnInit {
 
-  public bookList: BookModel[] = [];
+  bookList: BookModel[] = [];
 
   constructor(
     private bookService: BookService,
+    private cartService: CartService,
   ) { }
 
   ngOnInit(): void {
     this.bookList = this.bookService.getBooks();
   }
 
-
-  addBook(event): void {
-
+  addBook(book: BookModel): void {
+    this.cartService.addBook(book.id);
   }
 }
