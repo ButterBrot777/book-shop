@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, Output, EventEmitter, ChangeDetectorRef} from '@angular/core';
-import {BookModel} from '../../models/models';
+import {BookModel} from '../../../../models/models';
 
 @Component({
   selector: 'app-cart',
