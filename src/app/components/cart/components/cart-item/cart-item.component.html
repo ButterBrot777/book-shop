@@ -1,1 +1,14 @@
-<p>cart-item works!</p>
+<div class="book">
+  <h2>Book name: {{book.name}}</h2>
+
+  <h3>Author: {{book.author}}</h3>
+
+  <h4>Category: {{book.category}}</h4>
+
+  <p>Description: {{book.description}}</p>
+  <p>Price: {{book.price}}</p>
+</div>
+
+<button class="btn" (click)="change(true)">+</button>
+{{count}}
+<button class="btn" (click)="change(false)">-</button>

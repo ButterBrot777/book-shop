@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BookComponent } from './components/book/components/book/book.component';
-import { CartItemComponent } from './components/cart-item/cart-item.component';
+import { CartItemComponent } from './components/cart/components/cart-item/cart-item.component';
 import { CartComponent } from './components/cart/components/cart/cart.component';
 import { FormsModule } from '@angular/forms';
 import { BookListComponent } from './components/book/components/book-list/book-list.component';

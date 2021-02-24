@@ -1,7 +1,7 @@
 import {BookModel} from './book-model';
 import {BookCategories} from '../../../models/models';
 
-export const bookStorage: BookModel[] = [
+const bookStorage: BookModel[] = [
   {
     id: 1,
     isInCart: false,
@@ -36,3 +36,4 @@ export const bookStorage: BookModel[] = [
     author: 'Stephen King',
   }
 ];
+export default bookStorage;

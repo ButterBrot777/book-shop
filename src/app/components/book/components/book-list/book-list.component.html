@@ -1,1 +1,9 @@
-<p>book-list works!</p>
+<div
+  *ngFor="let book of bookList"
+  class="book"
+>
+  <app-book-item
+    [book]="book"
+    (add)="addBook($event)"
+  ></app-book-item>
+</div>
