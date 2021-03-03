@@ -11,11 +11,25 @@ import {CartBook} from '../../models/cart-models';
 })
 export class CartItemComponent {
   @Input() book: CartBook;
-  @Output() removeBookFromCart = new EventEmitter();
-  @Output() changed = new EventEmitter<boolean>();
-  count = 1;
+
+  @Output() remove = new EventEmitter<CartBook>();
+  @Output() increase = new EventEmitter<CartBook>();
+  @Output() decrease = new EventEmitter<CartBook>();
 
   constructor() { }
 
+  onIncrease(): void {
+    console.log('cart item change count');
+    this.increase.emit(this.book);
+  }
+
+  onDecrease(): void {
+    console.log('cart item change count');
+    this.decrease.emit(this.book);
+  }
+
+  onRemove(): void {
+    this.remove.emit(this.book);
+  }
 
 }

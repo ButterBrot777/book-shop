@@ -1,5 +1,5 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
-import {CartBook, CartItem} from '../../models/cart-models';
+import {AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit} from '@angular/core';
+import {CartBook, CartItem, CartData} from '../../models/cart-models';
 import {BookModel} from '../../../book/models/book-model';
 import {CartService} from '../../cart.service';
 import {BookService} from '../../../book/book.service';
@@ -9,11 +9,15 @@ import {BookService} from '../../../book/book.service';
   templateUrl: './cart-list.component.html',
   styleUrls: ['./cart-list.component.scss']
 })
-export class CartListComponent implements OnInit, DoCheck {
+export class CartListComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked {
 
   cartItems: CartItem[] = [];
   cartBooks: CartBook[] = [];
   bookStorage: BookModel[] = [];
+  cartData: CartData = {
+    totalQuantity: 0,
+    totalCost: 0
+  };
 
   constructor(
     private cartService: CartService,
@@ -23,16 +27,19 @@ export class CartListComponent implements OnInit, DoCheck {
   ngOnInit(): void {
     this.bookStorage = this.bookService.getBooks();
     this.cartItems = this.cartService.getAllItemsInCart();
-    console.log('cart list on init book storage: ', this.bookStorage);
-    console.log('cart list on init cart items: ', this.cartItems);
+    this.cartData = this.cartService.updateCartData();
+  }
+
+  ngAfterViewInit(): void {
+    this.cartService.updateCartData();
   }
 
   ngDoCheck(): void {
-    this.cartItems = this.cartService.getAllItemsInCart();
-    // this.cartBooks = this.findBook();
-    console.log('cart list ngDoCheck cartItems: ', this.cartItems);
-    console.log('cart list ngDoCheck cartBooks: ', this.cartBooks);
-    this.cartBooks = this.checkBooksToRender();
+    this.refreshCart();
+  }
+
+  ngAfterViewChecked(): void {
+    this.cartService.updateCartData();
   }
 
   findBook(id: number): CartBook {
@@ -43,8 +50,6 @@ export class CartListComponent implements OnInit, DoCheck {
 
   checkBooksToRender(): CartBook[] {
     console.log('check books to render');
-    const ids = this.cartItems.map(elem => elem.id);
-    console.log('ids: ', ids);
 
     return this.bookStorage
       .filter(book =>
@@ -55,5 +60,28 @@ export class CartListComponent implements OnInit, DoCheck {
         bookCount: this.cartItems.find((item) => item.id === book.id).count,
       };
     });
+  }
+
+  increaseCount(book: CartBook): void {
+    this.cartService.increaseQuantity(book.id);
+    this.cartData = this.cartService.updateCartData();
+  }
+  decreaseCount(book: CartBook): void {
+    this.cartService.decreaseQuantity(book.id);
+    this.cartData = this.cartService.updateCartData();
+  }
+  removeItemFromCart(book: CartBook): void {
+    this.cartService.removeBook(book.id);
+    this.cartData = this.cartService.updateCartData();
+  }
+  clearCart(): void {
+    this.cartService.removeAllBooks();
+    this.refreshCart();
+  }
+
+  refreshCart(): void {
+    this.cartItems = this.cartService.getAllItemsInCart();
+    this.cartBooks = this.checkBooksToRender();
+    // this.cartData = this.cartService.updateCartData()
   }
 }
