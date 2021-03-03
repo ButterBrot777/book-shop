@@ -21,7 +21,7 @@ const bookStorage: BookModel[] = [
     description: '«From the smallest beginnings come the greatest legends»',
     isAvailable: false,
     name: 'The Hobbit',
-    price: 100.99,
+    price: 50.99,
     author: 'Ronald Tolkien',
   },
   {
@@ -32,7 +32,7 @@ const bookStorage: BookModel[] = [
     description: '«And will I tell you that these three lived happily ever after? I will not, for no one ever does. But there was happiness. And they did live»',
     isAvailable: true,
     name: 'The Dark Tower',
-    price: 100.99,
+    price: 70.99,
     author: 'Stephen King',
   }
 ];
