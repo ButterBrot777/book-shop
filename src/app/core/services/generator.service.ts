@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, InjectionToken} from '@angular/core';
 
 const ALPHABET =
   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -30,3 +30,5 @@ export function GeneratorFactory(n: number) {
     return stringGenerator.generateRandomString(n);
   };
 }
+
+export const RANDOM_STRING = new InjectionToken<string>('randomString');
