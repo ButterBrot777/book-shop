@@ -27,7 +27,7 @@ export class CartService {
   }
 
   getAllItemsInCart(): CartItem[] {
-    console.log('get all items in cart: ', this.cartProducts);
+    // console.log('get all items in cart: ', this.cartProducts);
     return this.cartProducts;
   }
 

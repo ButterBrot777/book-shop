@@ -9,7 +9,7 @@ import {BookService} from '../../../book/book.service';
   templateUrl: './cart-list.component.html',
   styleUrls: ['./cart-list.component.scss']
 })
-export class CartListComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked {
+export class CartListComponent implements OnInit, DoCheck, AfterViewInit {
 
   cartItems: CartItem[] = [];
   cartBooks: CartBook[] = [];
@@ -38,10 +38,6 @@ export class CartListComponent implements OnInit, DoCheck, AfterViewInit, AfterV
     this.refreshCart();
   }
 
-  ngAfterViewChecked(): void {
-    this.cartService.updateCartData();
-  }
-
   findBook(id: number): CartBook {
     console.log('cart list find book');
     const book = this.bookStorage.find(item => item.id === id);
@@ -49,7 +45,7 @@ export class CartListComponent implements OnInit, DoCheck, AfterViewInit, AfterV
   }
 
   checkBooksToRender(): CartBook[] {
-    console.log('check books to render');
+    // console.log('check books to render');
 
     return this.bookStorage
       .filter(book =>
