@@ -10,6 +10,8 @@ export class BookItemComponent implements OnInit {
   @Input() book: BookModel;
   @Output() add = new EventEmitter<BookModel>();
 
+  isPrimary = true;
+
   constructor() { }
 
   ngOnInit(): void {
