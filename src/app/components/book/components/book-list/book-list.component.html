@@ -1,0 +1,9 @@
+<div
+  *ngFor="let book of bookList"
+  class="book"
+>
+  <app-book-item
+    [book]="book"
+    (add)="addBook(book)"
+  ></app-book-item>
+</div>

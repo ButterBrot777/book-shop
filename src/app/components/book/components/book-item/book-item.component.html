@@ -1,0 +1,20 @@
+<div>
+  <h2>Book name: {{book.name}}</h2>
+
+  <h3>Author: {{book.author}}</h3>
+
+  <h4>Category: {{book.category}}</h4>
+
+  <p>Description: {{book.description}}</p>
+  <p>isAvailable: {{book.isAvailable ? 'by now' : 'not avariable'}}</p>
+  <p>Price: {{book.price}}</p>
+  <p>Date: {{dateToString(book.createDate) | date:'long'}}</p>
+  <p>Description: {{book.description}}</p>
+
+  <button
+    class="btn"
+    [disabled]="!book.isAvailable || book.isInCart"
+    (click)="addBook()"
+  >Buy</button>
+</div>
+

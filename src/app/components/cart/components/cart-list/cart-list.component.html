@@ -1,0 +1,28 @@
+<ng-container *ngIf="cartItems.length; else message">
+  <h3>Purchases in your cart: cost: {{cartData.totalCost}}, quantity: {{cartData.totalQuantity}}</h3>
+  <button
+    (click)="clearCart()"
+    class="btn">Clear cart
+  </button>
+  <div class="flex">
+    <div
+      class="book"
+      *ngFor="let cartItem of cartBooks"
+    >
+      <app-cart-item
+        [book]="cartItem"
+        (increase)="increaseCount($event)"
+        (decrease)="decreaseCount($event)"
+        (remove)="removeItemFromCart($event)"
+      ></app-cart-item>
+    </div>
+  </div>
+
+</ng-container>
+
+<ng-template
+  #message
+  class="book"
+>
+  <p>Your cart is empty. Please add book to buy</p>
+</ng-template>
