@@ -13,5 +13,8 @@ import { CartComponent } from './cart.component';
     CartItemComponent,
     CartComponent,
   ],
+  exports: [
+    CartListComponent
+  ]
 })
 export class CartModule {}

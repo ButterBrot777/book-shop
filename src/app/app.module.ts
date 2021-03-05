@@ -12,19 +12,23 @@ import {ConstantsService} from './core/services/constants.service';
 import {ConfigOptionsService} from './core/services/config-options.service';
 import {GeneratorFactory, GeneratorService} from './core/services/generator.service';
 import { AboutComponent } from './layout/components/about/about.component';
+import {CartModule} from './components/cart/cart.module';
+import {BooksModule} from './components/book/books.module';
+import {OrdersModule} from './components/orders/orders.module';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CartItemComponent,
-    BookListComponent,
-    CartListComponent,
-    BookItemComponent,
     AboutComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    SharedModule,
+    CartModule,
+    BooksModule,
+    OrdersModule,
   ],
   providers: [
     {provide: LocalStorageService, useClass: LocalStorageService},
