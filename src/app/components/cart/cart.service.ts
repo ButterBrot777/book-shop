@@ -2,6 +2,7 @@ import {Injectable, Output, EventEmitter} from '@angular/core';
 import {CartItem, CartData} from './models/cart-models';
 import {BookModel} from '../book/models/book-model';
 import {BookService} from '../book/book.service';
+import {Observable, Subscription} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class CartService {
 
   // book storage
   bookStorage: BookModel[] = [];
+  bookStorage$: Observable<BookModel[]>;
 
   // cart items quantity
   totalQuantity: number;
@@ -23,15 +25,14 @@ export class CartService {
   constructor(
     private bookService: BookService
   ) {
-    this.bookStorage = this.getAllBooks();
+    this.bookStorage$ = this.getAllBooks();
   }
 
   getAllItemsInCart(): CartItem[] {
-    // console.log('get all items in cart: ', this.cartProducts);
     return this.cartProducts;
   }
 
-  getAllBooks(): BookModel[] {
+  getAllBooks(): Observable<BookModel[]> {
     return this.bookService.getBooks();
   }
 
@@ -104,6 +105,10 @@ export class CartService {
   }
 
   findBookPriceById(id: number): number {
-    return this.bookStorage.find(book => book.id === id).price;
+    let price = 0;
+    this.bookStorage$.subscribe((bookStore): void => {
+      price = bookStore.find(book => book.id === id).price;
+    }).unsubscribe();
+    return price;
   }
 }

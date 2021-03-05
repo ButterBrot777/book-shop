@@ -3,6 +3,7 @@ import {CartBook, CartItem, CartData} from '../../models/cart-models';
 import {BookModel} from '../../../book/models/book-model';
 import {CartService} from '../../cart.service';
 import {BookService} from '../../../book/book.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-cart-list',
@@ -13,7 +14,7 @@ export class CartListComponent implements OnInit, DoCheck, AfterViewInit {
 
   cartItems: CartItem[] = [];
   cartBooks: CartBook[] = [];
-  bookStorage: BookModel[] = [];
+  bookStorage$: Observable<BookModel[]>;
   cartData: CartData = {
     totalQuantity: 0,
     totalCost: 0
@@ -25,7 +26,7 @@ export class CartListComponent implements OnInit, DoCheck, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    this.bookStorage = this.bookService.getBooks();
+    this.bookStorage$ = this.bookService.getBooks();
     this.cartItems = this.cartService.getAllItemsInCart();
     this.cartData = this.cartService.updateCartData();
   }
@@ -39,23 +40,28 @@ export class CartListComponent implements OnInit, DoCheck, AfterViewInit {
   }
 
   findBook(id: number): CartBook {
-    console.log('cart list find book');
-    const book = this.bookStorage.find(item => item.id === id);
+    let book: BookModel;
+    this.bookStorage$.subscribe(books => {
+      book = books.find(item => item.id === id);
+    }).unsubscribe();
     return { ...book, bookCount: 1};
   }
 
   checkBooksToRender(): CartBook[] {
     // console.log('check books to render');
+    let storage: CartBook[];
 
-    return this.bookStorage
-      .filter(book =>
+    this.bookStorage$.subscribe(books => {
+      storage = books.filter(book =>
         this.cartItems.some((item) => book.id === item.id))
-      .map((book) => {
-      return {
-        ...book,
-        bookCount: this.cartItems.find((item) => item.id === book.id).count,
-      };
+        .map((book) => {
+          return {
+            ...book,
+            bookCount: this.cartItems.find((item) => item.id === book.id).count,
+          };
+        });
     });
+    return storage;
   }
 
   increaseCount(book: CartBook): void {
@@ -78,6 +84,5 @@ export class CartListComponent implements OnInit, DoCheck, AfterViewInit {
   refreshCart(): void {
     this.cartItems = this.cartService.getAllItemsInCart();
     this.cartBooks = this.checkBooksToRender();
-    // this.cartData = this.cartService.updateCartData()
   }
 }

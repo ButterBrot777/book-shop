@@ -21,7 +21,6 @@ export class BGToggleDirective {
   // }
 
   @HostListener('mouseenter') onMouseEnter(): void {
-    console.log('element: ', this.element.nativeElement.style);
     this.backgroundColor = '#f3eded';
   }
 
