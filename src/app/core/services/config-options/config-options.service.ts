@@ -1,13 +1,11 @@
-import {Injectable} from '@angular/core';
-import {LocalStorageService} from './local-storage.service';
-import {ConfigOptions} from '../../shared/models/config-options';
+import { Injectable } from '@angular/core';
+
+import { LocalStorageService } from '../local-storage/local-storage.service';
+import { ConfigOptions } from '../../../shared/models/config-options';
 
 @Injectable()
 export class ConfigOptionsService {
-  constructor(
-    private localStorage: LocalStorageService
-  ) {
-  }
+  constructor(private localStorage: LocalStorageService) {}
 
   // Partial применяется, когда нужно сделать все члены объекта необязательными
   setOptions(options: Partial<ConfigOptions>): void {

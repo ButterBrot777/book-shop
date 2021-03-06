@@ -1,39 +1,50 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {Constants} from '../../../core/services/constants.service';
-import {CONSTANTS} from '../../../core/services/constants.service';
-import {RANDOM_STRING} from '../../../core/services/generator.service';
-import {LocalStorageService} from '../../../core/services/local-storage.service';
-import {ConfigOptionsService} from '../../../core/services/config-options.service';
+import { Component, Inject, OnInit } from '@angular/core';
+
+import {
+  ConfigOptionsService,
+  Constants,
+  CONSTANTS,
+  LocalStorageService,
+  RANDOM_STRING,
+} from '../../../core';
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+  styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent implements OnInit {
+  private constants: Constants;
+  private randomString: string;
+  private localStorage: LocalStorageService;
+  private configOptionsService: ConfigOptionsService;
 
   constructor(
-    @Inject(CONSTANTS) private constants: Constants,
-    @Inject(RANDOM_STRING) private randomString: string,
-    private localStorage: LocalStorageService,
-    private configOptionsService: ConfigOptionsService
-  ) { }
+    @Inject(CONSTANTS) constants: Constants,
+    @Inject(RANDOM_STRING) randomString: string,
+    localStorage: LocalStorageService,
+    configOptionsService: ConfigOptionsService
+  ) {
+    this.constants = constants;
+    this.randomString = randomString;
+    this.localStorage = localStorage;
+    this.configOptionsService = configOptionsService;
+  }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.checkConstantService();
     this.checkStringGeneratorService();
   }
 
-  checkConstantService(): void {
-    if (this.constants.App === 'TaskManager' &&
-    this.constants.Ver === '1.0') {
+  private checkConstantService(): void {
+    if (this.constants.App === 'TaskManager' && this.constants.Ver === '1.0') {
       console.log('Constants service works correct');
     } else {
       console.log('Constants service works wrong');
     }
   }
 
-  checkStringGeneratorService(): void {
+  private checkStringGeneratorService(): void {
     if (this.randomString) {
       console.log('random string is: ', this.randomString);
     } else {
@@ -41,24 +52,27 @@ export class AboutComponent implements OnInit {
     }
   }
 
-  saveInLocalStorage(): void {
+  private saveInLocalStorage(): void {
     this.localStorage.setItem('hello', 'world');
     console.log('key "hello" and value "world" was added into localStorage');
   }
-  getFromLocalStorage(): void {
+
+  private getFromLocalStorage(): void {
     const itemInLocalStorage = this.localStorage.getItem('hello');
     console.log('get hello from localStorage: ', itemInLocalStorage);
   }
-  removeFromLocalStorage(): void {
+
+  private removeFromLocalStorage(): void {
     this.localStorage.removeItem('hello');
     console.log('item hello was removed');
   }
 
-  setConfig(): void {
-    this.configOptionsService.setOptions({login: 'Wasia513'});
+  private setConfig(): void {
+    this.configOptionsService.setOptions({ login: 'Wasia513' });
     console.log('config options was added');
   }
-  getOptions(): void {
+
+  private getOptions(): void {
     this.configOptionsService.getOptions(['login', 'email']);
   }
 }
