@@ -3,7 +3,6 @@ import {BookService} from '../../services/book.service';
 import {Book} from '../../models/book-model';
 import {CartService} from '../../../cart-page/services/cart.service';
 import {Observable} from 'rxjs';
-import bookStorage from '../../models/book-store';
 
 @Component({
   selector: 'app-book-list',

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, Output} from '@angular/core';
 import {CartBook} from '../../models/cart-models';
 
 @Component({
@@ -8,7 +8,7 @@ import {CartBook} from '../../models/cart-models';
   changeDetection: ChangeDetectionStrategy.Default
   // todo: change to onPush strategy
 })
-export class CartItemComponent {
+export class CartItemComponent implements OnDestroy {
   @Input() book: CartBook;
 
   @Output() remove = new EventEmitter<CartBook>();
@@ -16,6 +16,10 @@ export class CartItemComponent {
   @Output() decrease = new EventEmitter<CartBook>();
 
   constructor() { }
+
+  ngOnDestroy(): void {
+    console.log('Cart was destroyed');
+  }
 
   onIncrease(): void {
     console.log('cart-page item change count');

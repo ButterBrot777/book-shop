@@ -10,7 +10,7 @@ import {Observable} from 'rxjs';
   templateUrl: './cart-list.component.html',
   styleUrls: ['./cart-list.component.scss']
 })
-export class CartListComponent implements OnInit, DoCheck, AfterViewInit {
+export class CartListComponent implements OnInit, AfterViewInit {
 
   cartItems: CartItem[] = [];
   cartBooks: CartBook[] = [];
@@ -26,18 +26,25 @@ export class CartListComponent implements OnInit, DoCheck, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
+    console.log('Init CartListComponent');
+    // this.refreshCart();
     this.bookStorage$ = this.bookService.getBooks();
     this.cartItems = this.cartService.getAllItemsInCart();
     this.cartData = this.cartService.updateCartData();
+    this.cartBooks = this.checkBooksToRender();
+    console.log('init cart => books: ', this.bookStorage$);
+    console.log('cart items: ', this.cartItems);
+    console.log('cart books: ', this.cartBooks);
+
   }
 
   ngAfterViewInit(): void {
     this.cartService.updateCartData();
   }
 
-  ngDoCheck(): void {
-    this.refreshCart();
-  }
+  // ngDoCheck(): void {
+  //   this.refreshCart();
+  // }
 
   findBook(id: number): CartBook {
     let book: Book;
@@ -52,6 +59,8 @@ export class CartListComponent implements OnInit, DoCheck, AfterViewInit {
     let storage: CartBook[];
 
     this.bookStorage$.subscribe(books => {
+      console.log('in subscrible: books: ', books);
+      console.log('in subscrible, cart items: ', this.cartItems);
       storage = books.filter(book =>
         this.cartItems.some((item) => book.id === item.id))
         .map((book) => {
@@ -67,14 +76,17 @@ export class CartListComponent implements OnInit, DoCheck, AfterViewInit {
   increaseCount(book: CartBook): void {
     this.cartService.increaseQuantity(book.id);
     this.cartData = this.cartService.updateCartData();
+    this.refreshCart();
   }
   decreaseCount(book: CartBook): void {
     this.cartService.decreaseQuantity(book.id);
     this.cartData = this.cartService.updateCartData();
+    this.refreshCart();
   }
   removeItemFromCart(book: CartBook): void {
     this.cartService.removeBook(book.id);
     this.cartData = this.cartService.updateCartData();
+    this.refreshCart();
   }
   clearCart(): void {
     this.cartService.removeAllBooks();

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, EventEmitter, Output} from '@angular/core';
+import {Component, Input, OnInit, EventEmitter, Output, OnDestroy} from '@angular/core';
 import {Book} from '../../models/book-model';
 
 @Component({
@@ -6,7 +6,7 @@ import {Book} from '../../models/book-model';
   templateUrl: './book-item.component.html',
   styleUrls: ['./book-item.component.scss']
 })
-export class BookItemComponent implements OnInit {
+export class BookItemComponent implements OnInit, OnDestroy {
   @Input() book: Book;
   @Output() add = new EventEmitter<Book>();
 
@@ -15,6 +15,10 @@ export class BookItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    console.log('Book was destroyed');
   }
 
   dateToString(time: number): Date {

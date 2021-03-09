@@ -13,7 +13,6 @@ export class CartService {
   cartProducts: CartItem[] = [];
 
   // book-page storage
-  bookStorage: Book[] = [];
   bookStorage$: Observable<Book[]>;
 
   // cart-page items quantity
@@ -45,7 +44,8 @@ export class CartService {
     } else {
       this.cartProducts.push({id, count: 1, price: this.findBookPriceById(id)});
       this.updateCartData();
-      console.log('add book-page: ', this.cartProducts);
+      console.log('add cart item: ', this.cartProducts);
+      console.log('add cart books: ', this.bookStorage$);
       console.log('totalSum: ', this.totalSum);
       console.log('totalCost: ', this.totalQuantity);
     }
