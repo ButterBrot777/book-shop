@@ -7,8 +7,8 @@ import {BookCategories, BookModel} from './models/models';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'book-shop';
-  testTitle = 'book-test';
+  title = 'book-page-shop';
+  testTitle = 'book-page-test';
 
   constructor() {
   }

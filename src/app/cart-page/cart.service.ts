@@ -1,7 +1,7 @@
 import {Injectable, Output, EventEmitter} from '@angular/core';
 import {CartItem, CartData} from './models/cart-models';
-import {BookModel} from '../book/models/book-model';
-import {BookService} from '../book/book.service';
+import {BookModel} from '../book-page/models/book-model';
+import {BookService} from '../book-page/book.service';
 import {Observable, Subscription} from 'rxjs';
 
 @Injectable({
@@ -9,17 +9,17 @@ import {Observable, Subscription} from 'rxjs';
 })
 export class CartService {
 
-  // cart storage
+  // cart-page storage
   cartProducts: CartItem[] = [];
 
-  // book storage
+  // book-page storage
   bookStorage: BookModel[] = [];
   bookStorage$: Observable<BookModel[]>;
 
-  // cart items quantity
+  // cart-page items quantity
   totalQuantity: number;
 
-  // total cart cost
+  // total cart-page cost
   totalSum: number;
 
   constructor(
@@ -45,7 +45,7 @@ export class CartService {
     } else {
       this.cartProducts.push({id, count: 1, price: this.findBookPriceById(id)});
       this.updateCartData();
-      console.log('add book: ', this.cartProducts);
+      console.log('add book-page: ', this.cartProducts);
       console.log('totalSum: ', this.totalSum);
       console.log('totalCost: ', this.totalQuantity);
     }
@@ -74,7 +74,7 @@ export class CartService {
     this.cartProducts = [];
   }
 
-  // recalculate total quantity and cart cost after each action
+  // recalculate total quantity and cart-page cost after each action
   updateCartData(): CartData {
     this.calculateItemsCost();
     this.calculateItemsQuantity();
@@ -98,9 +98,9 @@ export class CartService {
     this.totalSum = totalCost;
   }
 
-  // check if book is already in the cart
+  // check if book-page is already in the cart-page
   findBookInCart(id: number): CartItem {
-    console.log('service check if in cart');
+    console.log('service check if in cart-page');
     return this.cartProducts.find(item => item.id === id);
   }
 

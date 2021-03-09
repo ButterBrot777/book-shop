@@ -1,5 +1,5 @@
 import {BookModel} from './book-model';
-import {BookCategories} from '../../../models/models';
+import {BookCategories} from '../../models/models';
 
 const bookStorage: BookModel[] = [
   {

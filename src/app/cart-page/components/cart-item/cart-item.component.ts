@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {BookModel} from '../../../../models/models';
+import {BookModel} from '../../../models/models';
 import {CartBook} from '../../models/cart-models';
 
 @Component({
@@ -19,12 +19,12 @@ export class CartItemComponent {
   constructor() { }
 
   onIncrease(): void {
-    console.log('cart item change count');
+    console.log('cart-page item change count');
     this.increase.emit(this.book);
   }
 
   onDecrease(): void {
-    console.log('cart item change count');
+    console.log('cart-page item change count');
     this.decrease.emit(this.book);
   }
 

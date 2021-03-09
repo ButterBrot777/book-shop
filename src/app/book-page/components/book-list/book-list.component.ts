@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BookService} from '../../book.service';
 import {BookModel} from '../../models/book-model';
-import {CartService} from '../../../cart/cart.service';
+import {CartService} from '../../../cart-page/cart.service';
 import {Observable} from 'rxjs';
 import bookStorage from '../../models/book-store';
 
@@ -21,7 +21,7 @@ export class BookListComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookList$ = this.bookService.getBooks();
-    // console.log('from book list component: ', this.boo)
+    // console.log('from book-page list component: ', this.boo)
   }
 
   addBook(book: BookModel): void {
