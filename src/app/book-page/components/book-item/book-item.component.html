@@ -1,7 +1,11 @@
 <div>
   <h2 [ngClass]="{primaryColor: isPrimary}">Book name: {{book.name}}</h2>
 
-  <h3 appHighlightOnClick>Author: {{book.author | titlecase}}</h3>
+  <h3 appHighlightOnClick
+      [backgroundColor]="'#28a745'"
+      [borderWidth]="'2px'"
+      [borderColor]="'yellow'"
+  >Author: {{book.author | titlecase}}</h3>
 
   <h4>Category: {{book.category}}</h4>
 
