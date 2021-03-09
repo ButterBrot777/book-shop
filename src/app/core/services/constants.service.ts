@@ -1,13 +1,4 @@
 import {InjectionToken} from '@angular/core';
+import {AppConstVersion} from '../../models/app-const-version';
 
-export interface Constants {
-  App: string;
-  Ver: string;
-}
-
-export const ConstantsService: Constants = {
-  App: 'TaskManager',
-  Ver: '1.0',
-};
-
-export const CONSTANTS = new InjectionToken<Constants>('Constants');
+export const CONSTANTS = new InjectionToken<AppConstVersion>('Constants');

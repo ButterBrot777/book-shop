@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Constants} from '../../../core/services/constants.service';
+import {AppConstVersion} from '../../../models/app-const-version';
 import {CONSTANTS} from '../../../core/services/constants.service';
 import {RANDOM_STRING} from '../../../core/services/generator.service';
 import {LocalStorageService} from '../../../core/services/local-storage.service';
@@ -13,7 +13,7 @@ import {ConfigOptionsService} from '../../../core/services/config-options.servic
 export class AboutComponent implements OnInit {
 
   constructor(
-    @Inject(CONSTANTS) private constants: Constants,
+    @Inject(CONSTANTS) private constants: AppConstVersion,
     @Inject(RANDOM_STRING) private randomString: string,
     private localStorage: LocalStorageService,
     private configOptionsService: ConfigOptionsService

@@ -7,7 +7,7 @@ import {OrdersModule} from './orders-page/orders.module';
 import {SharedModule} from './shared/shared.module';
 
 import {LocalStorageService} from './core/services/local-storage.service';
-import {ConstantsService} from './core/services/constants.service';
+import {ConstantsService} from './core/constants';
 import {ConfigOptionsService} from './core/services/config-options.service';
 import {GeneratorFactory, GeneratorService} from './core/services/generator.service';
 

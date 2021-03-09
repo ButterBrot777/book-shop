@@ -1,13 +1,11 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {RouterModule} from '@angular/router';
 import { BGToggleDirective } from './directives/bgtoggle.directive';
 import { HighlightOnClickDirective } from './directives/highlight-on-click.directive';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule,
   ],
   declarations: [
     BGToggleDirective,
@@ -15,7 +13,6 @@ import { HighlightOnClickDirective } from './directives/highlight-on-click.direc
   ],
   exports: [
     CommonModule,
-    RouterModule,
     BGToggleDirective,
     HighlightOnClickDirective,
   ],
