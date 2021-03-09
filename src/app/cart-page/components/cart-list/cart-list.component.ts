@@ -1,8 +1,8 @@
 import {AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit} from '@angular/core';
 import {CartBook, CartItem, CartData} from '../../models/cart-models';
 import {Book} from '../../../book-page/models/book-model';
-import {CartService} from '../../cart.service';
-import {BookService} from '../../../book-page/book.service';
+import {CartService} from '../../services/cart.service';
+import {BookService} from '../../../book-page/services/book.service';
 import {Observable} from 'rxjs';
 
 @Component({

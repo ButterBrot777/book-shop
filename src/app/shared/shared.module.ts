@@ -1,20 +1,16 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import { BGToggleDirective } from './directives/bgtoggle.directive';
-import { HighlightOnClickDirective } from './directives/highlight-on-click.directive';
+import {DirectiveModule} from './directives/directive.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    DirectiveModule
   ],
-  declarations: [
-    BGToggleDirective,
-    HighlightOnClickDirective
-  ],
+  declarations: [],
   exports: [
     CommonModule,
-    BGToggleDirective,
-    HighlightOnClickDirective,
+    DirectiveModule,
   ],
   providers: [],
 })

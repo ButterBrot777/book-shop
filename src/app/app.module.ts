@@ -12,7 +12,7 @@ import {ConfigOptionsService} from './core/services/config-options.service';
 import {GeneratorFactory, GeneratorService} from './core/services/generator.service';
 
 import {AppComponent} from './app.component';
-import {AboutComponent} from './layout/components/about/about.component';
+import {AboutComponent} from './layout/about/about.component';
 
 @NgModule({
   declarations: [

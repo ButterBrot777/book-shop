@@ -1,9 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {AppConstVersion} from '../../../models/app-const-version';
-import {CONSTANTS} from '../../../core/services/constants.service';
-import {RANDOM_STRING} from '../../../core/services/generator.service';
-import {LocalStorageService} from '../../../core/services/local-storage.service';
-import {ConfigOptionsService} from '../../../core/services/config-options.service';
+import {AppConstVersion} from '../../models/app-const-version';
+import {CONSTANTS} from '../../core/services/constants.service';
+import {RANDOM_STRING} from '../../core/services/generator.service';
+import {LocalStorageService} from '../../core/services/local-storage.service';
+import {ConfigOptionsService} from '../../core/services/config-options.service';
 
 @Component({
   selector: 'app-about',

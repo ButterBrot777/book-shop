@@ -1,7 +1,7 @@
 import {Injectable, Output, EventEmitter} from '@angular/core';
-import {CartItem, CartData} from './models/cart-models';
-import {Book} from '../book-page/models/book-model';
-import {BookService} from '../book-page/book.service';
+import {CartItem, CartData} from '../models/cart-models';
+import {Book} from '../../book-page/models/book-model';
+import {BookService} from '../../book-page/services/book.service';
 import {Observable, Subscription} from 'rxjs';
 
 @Injectable({

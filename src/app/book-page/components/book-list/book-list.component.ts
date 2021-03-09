@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {BookService} from '../../book.service';
+import {BookService} from '../../services/book.service';
 import {Book} from '../../models/book-model';
-import {CartService} from '../../../cart-page/cart.service';
+import {CartService} from '../../../cart-page/services/cart.service';
 import {Observable} from 'rxjs';
 import bookStorage from '../../models/book-store';
 

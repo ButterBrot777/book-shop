@@ -3,7 +3,7 @@ import {Directive, ElementRef, Renderer2, HostListener, HostBinding} from '@angu
 @Directive({
   selector: '[appBGToggle]'
 })
-export class BGToggleDirective {
+export class BackgroundToggleDirective {
   private backgroundColor: string;
 
   constructor(private element: ElementRef, private renderer: Renderer2){
