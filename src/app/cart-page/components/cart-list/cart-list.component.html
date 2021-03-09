@@ -1,14 +1,11 @@
-<ng-container *ngIf="cartItems.length; else message">
-  <h3>Purchases in your cart: cost: {{cartData.totalCost}}, quantity: {{cartData.totalQuantity}}</h3>
-  <button
-    (click)="clearCart()"
-    class="btn">Clear cart
-  </button>
+<ng-container *ngIf="cart$ | async as cart; else message">
+  <h3>
+    Purchases in your cart: cost: {{ cartData.totalCost }}, quantity:
+    {{ cartData.totalQuantity }}
+  </h3>
+  <button (click)="clearCart()" class="btn">Clear cart</button>
   <div class="flex">
-    <div
-      class="book"
-      *ngFor="let cartItem of cartBooks"
-    >
+    <div class="book" *ngFor="let cartItem of cart">
       <app-cart-item
         [book]="cartItem"
         (increase)="increaseCount($event)"
@@ -17,12 +14,8 @@
       ></app-cart-item>
     </div>
   </div>
-
 </ng-container>
 
-<ng-template
-  #message
-  class="book"
->
+<ng-template #message class="book">
   <p>Your cart is empty. Please add book to buy</p>
 </ng-template>
