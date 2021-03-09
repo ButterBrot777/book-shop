@@ -4,16 +4,12 @@ import {Directive, ElementRef, Renderer2, HostListener, HostBinding} from '@angu
   selector: '[appBGToggle]'
 })
 export class BackgroundToggleDirective {
-  private backgroundColor: string;
-
   constructor(private element: ElementRef, private renderer: Renderer2){
 
     this.renderer.setStyle(this.element.nativeElement, 'cursor', 'pointer');
   }
 
-  @HostBinding('style.backgroundColor') get getBackgroundColor(): string {
-    return this.backgroundColor;
-  }
+  @HostBinding('style.backgroundColor') backgroundColor: string;
 
   // this way is the same as in constructor via renderer to set cursor pointer
   // @HostBinding('style.cursor') get getCursor(): string {
