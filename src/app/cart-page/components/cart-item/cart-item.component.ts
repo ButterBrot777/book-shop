@@ -1,5 +1,4 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {BookModel} from '../../../models/models';
 import {CartBook} from '../../models/cart-models';
 
 @Component({

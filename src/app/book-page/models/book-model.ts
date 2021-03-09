@@ -1,4 +1,6 @@
-export interface BookModel {
+import {BookCategories} from '../../core/constants';
+
+export interface Book {
   id?: number;
   isInCart?: boolean;
   name: string;
@@ -8,11 +10,4 @@ export interface BookModel {
   createDate: number;
   isAvailable: boolean;
   author: string;
-}
-
-export enum BookCategories {
-  Action = 'Action',
-  Detective = 'Detective',
-  Fantasy = 'Fantasy',
-  Horror = 'Horror',
 }

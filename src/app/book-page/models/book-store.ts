@@ -1,7 +1,7 @@
-import {BookModel} from './book-model';
-import {BookCategories} from '../../models/models';
+import {Book} from './book-model';
+import {BookCategories} from '../../core/constants';
 
-const bookStorage: BookModel[] = [
+const bookStorage: Book[] = [
   {
     id: 1,
     isInCart: false,

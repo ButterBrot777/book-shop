@@ -1,6 +1,6 @@
 import {Injectable, Output, EventEmitter} from '@angular/core';
 import {CartItem, CartData} from './models/cart-models';
-import {BookModel} from '../book-page/models/book-model';
+import {Book} from '../book-page/models/book-model';
 import {BookService} from '../book-page/book.service';
 import {Observable, Subscription} from 'rxjs';
 
@@ -13,8 +13,8 @@ export class CartService {
   cartProducts: CartItem[] = [];
 
   // book-page storage
-  bookStorage: BookModel[] = [];
-  bookStorage$: Observable<BookModel[]>;
+  bookStorage: Book[] = [];
+  bookStorage$: Observable<Book[]>;
 
   // cart-page items quantity
   totalQuantity: number;
@@ -32,7 +32,7 @@ export class CartService {
     return this.cartProducts;
   }
 
-  getAllBooks(): Observable<BookModel[]> {
+  getAllBooks(): Observable<Book[]> {
     return this.bookService.getBooks();
   }
 

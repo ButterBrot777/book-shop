@@ -1,5 +1,4 @@
 import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
-import {BookCategories, BookModel} from './models/models';
 
 @Component({
   selector: 'app-root',

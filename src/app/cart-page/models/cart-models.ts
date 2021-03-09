@@ -1,4 +1,4 @@
-import {BookModel} from '../../book-page/models/book-model';
+import {Book} from '../../book-page/models/book-model';
 
 export interface CartItem {
   id: number;
@@ -6,7 +6,7 @@ export interface CartItem {
   price: number;
 }
 
-export interface CartBook extends BookModel {
+export interface CartBook extends Book {
   bookCount: number;
 }
 

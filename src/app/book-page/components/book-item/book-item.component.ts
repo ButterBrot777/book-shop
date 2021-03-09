@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, EventEmitter, Output} from '@angular/core';
-import {BookModel} from '../../models/book-model';
+import {Book} from '../../models/book-model';
 
 @Component({
   selector: 'app-book-item',
@@ -7,8 +7,8 @@ import {BookModel} from '../../models/book-model';
   styleUrls: ['./book-item.component.scss']
 })
 export class BookItemComponent implements OnInit {
-  @Input() book: BookModel;
-  @Output() add = new EventEmitter<BookModel>();
+  @Input() book: Book;
+  @Output() add = new EventEmitter<Book>();
 
   isPrimary = true;
 

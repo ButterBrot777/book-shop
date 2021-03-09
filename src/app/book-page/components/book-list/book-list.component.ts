@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {BookService} from '../../book.service';
-import {BookModel} from '../../models/book-model';
+import {Book} from '../../models/book-model';
 import {CartService} from '../../../cart-page/cart.service';
 import {Observable} from 'rxjs';
 import bookStorage from '../../models/book-store';
@@ -12,7 +12,7 @@ import bookStorage from '../../models/book-store';
 })
 export class BookListComponent implements OnInit {
 
-  bookList$: Observable<BookModel[]>;
+  bookList$: Observable<Book[]>;
 
   constructor(
     private bookService: BookService,
@@ -24,7 +24,7 @@ export class BookListComponent implements OnInit {
     // console.log('from book-page list component: ', this.boo)
   }
 
-  addBook(book: BookModel): void {
+  addBook(book: Book): void {
     this.cartService.addBook(book.id);
   }
 }

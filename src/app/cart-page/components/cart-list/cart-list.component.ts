@@ -1,6 +1,6 @@
 import {AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit} from '@angular/core';
 import {CartBook, CartItem, CartData} from '../../models/cart-models';
-import {BookModel} from '../../../book-page/models/book-model';
+import {Book} from '../../../book-page/models/book-model';
 import {CartService} from '../../cart.service';
 import {BookService} from '../../../book-page/book.service';
 import {Observable} from 'rxjs';
@@ -14,7 +14,7 @@ export class CartListComponent implements OnInit, DoCheck, AfterViewInit {
 
   cartItems: CartItem[] = [];
   cartBooks: CartBook[] = [];
-  bookStorage$: Observable<BookModel[]>;
+  bookStorage$: Observable<Book[]>;
   cartData: CartData = {
     totalQuantity: 0,
     totalCost: 0
@@ -40,7 +40,7 @@ export class CartListComponent implements OnInit, DoCheck, AfterViewInit {
   }
 
   findBook(id: number): CartBook {
-    let book: BookModel;
+    let book: Book;
     this.bookStorage$.subscribe(books => {
       book = books.find(item => item.id === id);
     }).unsubscribe();

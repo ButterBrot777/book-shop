@@ -1,21 +1,18 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppComponent } from './app.component';
-import { CartItemComponent } from './cart-page/components/cart-item/cart-item.component';
-import { FormsModule } from '@angular/forms';
-import { BookListComponent } from './book-page/components/book-list/book-list.component';
-import { CartListComponent } from './cart-page/components/cart-list/cart-list.component';
-import { BookItemComponent } from './book-page/components/book-item/book-item.component';
-import {LocalStorageService} from './core/services/local-storage.service';
-import {ConstantsService} from './core/services/constants.service';
-import {ConfigOptionsService} from './core/services/config-options.service';
-import {GeneratorFactory, GeneratorService} from './core/services/generator.service';
-import { AboutComponent } from './layout/components/about/about.component';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
 import {CartModule} from './cart-page/cart.module';
 import {BooksModule} from './book-page/books.module';
 import {OrdersModule} from './orders-page/orders.module';
 import {SharedModule} from './shared/shared.module';
+
+import {LocalStorageService} from './core/services/local-storage.service';
+import {ConstantsService} from './core/services/constants.service';
+import {ConfigOptionsService} from './core/services/config-options.service';
+import {GeneratorFactory, GeneratorService} from './core/services/generator.service';
+
+import {AppComponent} from './app.component';
+import {AboutComponent} from './layout/components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -38,4 +35,5 @@ import {SharedModule} from './shared/shared.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
