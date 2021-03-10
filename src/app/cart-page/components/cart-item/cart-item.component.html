@@ -1,4 +1,4 @@
-<h2>Book name: {{book.name}}</h2>
+<h2>{{book.name}}</h2>
 
 <h3>Author: {{book.author}}</h3>
 
@@ -16,7 +16,7 @@
       (click)="onIncrease()"
     >+</button>
 
-    <span>{{ book.bookCount }}</span>
+    <span>{{ cartItems[index]?.bookCount }}</span>
     <button
       class="btn"
       (click)="onDecrease()"

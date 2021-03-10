@@ -1,4 +1,4 @@
-<ng-container *ngIf="cartItems.length; else message">
+<ng-container *ngIf="isCartEmpty; else message">
   <h3>Purchases in your cart: cost: {{cartData.totalCost}}, quantity: {{cartData.totalQuantity}}</h3>
   <button
     (click)="clearCart()"
@@ -7,17 +7,18 @@
   <div class="flex">
     <div
       class="book"
-      *ngFor="let cartItem of cartBooks"
+      *ngFor="let book of cart$ | async as cartBooks; let i = index"
     >
       <app-cart-item
-        [book]="cartItem"
+        [index]="i"
+        [cartItems]="cartBooks"
+        [book]="book"
         (increase)="increaseCount($event)"
         (decrease)="decreaseCount($event)"
         (remove)="removeItemFromCart($event)"
       ></app-cart-item>
     </div>
   </div>
-
 </ng-container>
 
 <ng-template

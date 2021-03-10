@@ -7,7 +7,6 @@ import {Observable, of} from 'rxjs';
   providedIn: 'root'
 })
 export class BookService {
-  private books: Book[] = bookStorage;
   private books$ = of(bookStorage);
 
   constructor() { }

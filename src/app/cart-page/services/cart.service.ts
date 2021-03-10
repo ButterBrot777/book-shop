@@ -1,114 +1,117 @@
-import {Injectable, Output, EventEmitter} from '@angular/core';
-import {CartItem, CartData} from '../models/cart-models';
+import {Injectable, OnDestroy} from '@angular/core';
+import {CartBook, CartData} from '../models/cart-models';
 import {Book} from '../../book-page/models/book-model';
 import {BookService} from '../../book-page/services/book.service';
-import {Observable, Subscription} from 'rxjs';
+import {BehaviorSubject, Subscription} from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class CartService {
-
-  // cart-page storage
-  cartProducts: CartItem[] = [];
+export class CartService implements OnDestroy {
+  private cart: CartBook[] = [];
 
   // book-page storage
-  bookStorage$: Observable<Book[]>;
+  private bookStorage: Book[];
 
-  // cart-page items quantity
-  totalQuantity: number;
+  private cartData: CartData = {
+    totalQuantity: 0,
+    totalCost: 0,
+  };
 
-  // total cart-page cost
-  totalSum: number;
+  // Observable of cart
+  public cartSubject: BehaviorSubject<Array<CartBook>> = new BehaviorSubject(this.cart);
+  public cartDataSubject: BehaviorSubject<CartData> = new BehaviorSubject(this.cartData);
+
+  private cartSubscription: Subscription;
+  private cartBookSubscription: Subscription;
 
   constructor(
     private bookService: BookService
   ) {
-    this.bookStorage$ = this.getAllBooks();
+    this.cartSubscription = this.bookService
+      .getBooks()
+      .subscribe((books: Book[]) => (this.bookStorage = books));
   }
 
-  getAllItemsInCart(): CartItem[] {
-    return this.cartProducts;
-  }
-
-  getAllBooks(): Observable<Book[]> {
-    return this.bookService.getBooks();
+  ngOnDestroy(): void {
+    this.cartSubscription.unsubscribe();
+    this.cartBookSubscription.unsubscribe();
   }
 
   addBook(id: number): void {
-    const isInCart = this.findBookInCart(id);
+    const item: CartBook = this.findBookInCart(id);
 
-    if (isInCart) {
-      console.log('abort');
-      return;
-    } else {
-      this.cartProducts.push({id, count: 1, price: this.findBookPriceById(id)});
+    const shouldUpdateCart: boolean = !item;
+
+    if (shouldUpdateCart) {
+      const book = this.findBookInStorage(id);
+      const newCartBook = {
+        ...book,
+        bookCount: 1,
+      };
+      this.cart = this.cart ? [...this.cart, newCartBook] : [newCartBook];
+      this.cartSubject.next(this.cart);
       this.updateCartData();
-      console.log('add cart item: ', this.cartProducts);
-      console.log('add cart books: ', this.bookStorage$);
-      console.log('totalSum: ', this.totalSum);
-      console.log('totalCost: ', this.totalQuantity);
     }
   }
 
   increaseQuantity(bookId: number): void {
-    this.findBookInCart(bookId).count += 1;
+    this.findBookInCart(bookId).bookCount += 1;
     this.updateCartData();
   }
 
   decreaseQuantity(bookId: number): void {
-    const cartItem = this.findBookInCart(bookId);
-    if (cartItem.count > 0) {
-      cartItem.count -= 1;
+    const cartBook = this.findBookInCart(bookId);
+    if (cartBook.bookCount > 0) {
+      cartBook.bookCount -= 1;
       this.updateCartData();
     }
   }
 
   removeBook(id: number): void {
-    const indexOfBook = this.cartProducts.findIndex(book => book.id === id);
-    this.cartProducts.splice(indexOfBook, 1);
+    const indexOfBook = this.cart.findIndex(book => book.id === id);
+    this.cart.splice(indexOfBook, 1);
     this.updateCartData();
   }
 
   removeAllBooks(): void {
-    this.cartProducts = [];
+    this.cart = [];
+    this.updateCartData();
   }
 
   // recalculate total quantity and cart-page cost after each action
-  updateCartData(): CartData {
+  updateCartData(): void {
+    this.updateCart();
     this.calculateItemsCost();
     this.calculateItemsQuantity();
-    return {
-      totalCost: this.totalSum,
-      totalQuantity: this.totalQuantity
-    };
+    this.cartDataSubject.next(this.cartData);
   }
 
+  updateCart(): void {
+    const newCart = [...this.cart];
+    this.cartSubject.next(newCart);
+  }
   calculateItemsQuantity(): void {
-    const totalCount = this.cartProducts.reduce((acc: number, curr): number => {
-      return acc + curr.count;
+    const totalCount = this.cart?.reduce((acc: number, curr): number => {
+      return acc + curr.bookCount;
     }, 0);
-    this.totalQuantity = totalCount;
+    this.cartData.totalQuantity = totalCount;
   }
-  calculateItemsCost(): void {
-    const totalCost = this.cartProducts.reduce((acc: number, curr): number => {
-      return acc +  curr.count * curr.price;
-    },  0);
 
-    this.totalSum = totalCost;
+  calculateItemsCost(): void {
+    const totalCost = this.cart?.reduce((acc: number, curr): number => {
+      return acc + curr.bookCount * curr.price;
+    }, 0);
+
+    this.cartData.totalCost = totalCost;
   }
 
   // check if book-page is already in the cart-page
-  findBookInCart(id: number): CartItem {
-    console.log('service check if in cart-page');
-    return this.cartProducts.find(item => item.id === id);
+  findBookInCart(id: number): CartBook {
+    return this.cart.find(item => item.id === id);
   }
 
-  findBookPriceById(id: number): number {
-    let price = 0;
-    this.bookStorage$.subscribe((bookStore): void => {
-      price = bookStore.find(book => book.id === id).price;
-    }).unsubscribe();
-    return price;
+  findBookInStorage(id: number): Book {
+    return this.bookStorage?.find((book: Book) => book.id === id);
   }
 }
