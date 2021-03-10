@@ -1,3 +1,35 @@
+<form
+  style="height: 40px; width: 200px"
+  [formGroup]="form"
+>
+  <label>Option:</label>
+  <select
+    formControlName="sortParams"
+    (change)="changeCountry($event)"
+  >
+    <option *ngFor="let option of sortOptions">{{option.option}}</option>
+  </select>
+  <label>Direction:</label>
+  <select
+    formControlName="sortDirection"
+    (change)="changeDirection()"
+  >
+    <option *ngFor="let option of sortDirection">{{option.name}}</option>
+  </select>
+
+</form>
+<div
+  style="display: flex; flex-direction: column"
+>
+  <div
+    *ngFor="let country of (countries | orderBy:opt:dir)">
+    <p>name: {{country.name}}</p>
+    <p>price: {{country.price}}</p>
+    <p>rating: {{country.rating}}</p>
+  </div>
+
+</div>
+
 <div
   *ngFor="let book of bookList$ | async"
   class="book"

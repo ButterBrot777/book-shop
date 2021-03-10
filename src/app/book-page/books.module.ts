@@ -6,7 +6,7 @@ import { BookComponent } from './book.component';
 
 @NgModule({
   imports: [
-    SharedModule
+    SharedModule,
   ],
   declarations: [
     BookListComponent,
