@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {DirectiveModule} from './directives';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {CartNavComponent} from './components';
 import {PipeModule} from './pipes/';
 
 @NgModule({
@@ -14,7 +15,9 @@ import {PipeModule} from './pipes/';
     DirectiveModule,
     PipeModule,
   ],
-  declarations: [],
+  declarations: [
+    CartNavComponent,
+  ],
   exports: [
     CommonModule,
     FormsModule,
@@ -24,4 +27,5 @@ import {PipeModule} from './pipes/';
   ],
   providers: [],
 })
-export class SharedModule {}
+export class SharedModule {
+}
