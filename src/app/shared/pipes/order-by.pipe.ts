@@ -13,7 +13,6 @@ export class OrderByPipe implements PipeTransform {
 
     if (values.length) {
       const fieldValueType = typeof values[0][key];
-      console.log('fieldValueType: ', fieldValueType);
 
       switch (fieldValueType) {
         case 'string':

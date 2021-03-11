@@ -4,6 +4,7 @@ import {Book} from '../../../book-page/models/book-model';
 import {CartService} from '../../services/cart.service';
 import {BookService} from '../../../book-page/services/book.service';
 import {Observable, Subscription} from 'rxjs';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-cart-list',
@@ -15,6 +16,22 @@ export class CartListComponent implements OnInit, OnDestroy {
   cartData: CartData;
   cart$: Observable<CartBook[]>;
   isCartEmpty = true;
+  orderOptions = [
+    {id: 1, option: 'name', name: 'name'},
+    {id: 2, option: 'price', name: 'price'},
+    {id: 3, option: 'bookCount', name: 'count'},
+  ];
+  orderDirection = [
+    {id: 1, name: 'descending'},
+    {id: 2, name: 'ascending'},
+  ];
+  opt = 'name';
+  dir = false;
+
+  form = new FormGroup({
+    sortParams: new FormControl('name', Validators.required),
+    sortDirection: new FormControl('', Validators.required)
+  });
 
   private bookStorage$: Observable<Book[]>;
   private cartSubscription: Subscription;
@@ -61,5 +78,13 @@ export class CartListComponent implements OnInit, OnDestroy {
 
   clearCart(): void {
     this.cartService.removeAllBooks();
+  }
+
+  changeOrderOption(e): void {
+    this.opt = e.target.value;
+  }
+
+  changeOrderDirection(): void {
+    this.dir = !this.dir;
   }
 }

@@ -11,7 +11,6 @@ import {CartBook} from '../../models/cart-models';
 export class CartItemComponent implements OnDestroy {
   @Input() book: CartBook;
   @Input() cartItems: CartBook[];
-  @Input() index: number;
 
   @Output() remove = new EventEmitter<CartBook>();
   @Output() increase = new EventEmitter<CartBook>();
