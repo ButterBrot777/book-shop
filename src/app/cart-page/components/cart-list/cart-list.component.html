@@ -1,16 +1,45 @@
 <ng-container *ngIf="isCartEmpty; else message">
-  <h3>Purchases in your cart: cost: {{cartData.totalCost}}, quantity: {{cartData.totalQuantity}}</h3>
-  <button
-    (click)="clearCart()"
-    class="btn">Clear cart
-  </button>
+  <div class="control-block">
+    <button
+      (click)="clearCart()"
+      class="btn">Clear cart
+    </button>
+
+    <form
+      style="height: 40px; width: 500px; display: flex;white-space: nowrap; display: flex; align-items: center"
+      [formGroup]="form"
+    >
+      <label>Sort by:</label>
+      <select
+        formControlName="sortParams"
+        (change)="changeOrderOption($event)"
+      >
+        <option
+          *ngFor="let option of orderOptions"
+          [value]="option.option"
+          [selected]="option.name === opt"
+        >
+          {{option.name}}
+        </option>
+      </select>
+      <label>Direction:</label>
+      <select
+        formControlName="sortDirection"
+        (change)="changeOrderDirection()"
+      >
+        <option *ngFor="let option of orderDirection">{{option.name}}</option>
+      </select>
+
+    </form>
+  </div>
+  <h3>Purchases in your cart: cost: {{cartData.totalCost | round | currency}}, quantity: {{cartData.totalQuantity}}</h3>
+
   <div class="flex">
     <div
       class="book"
-      *ngFor="let book of cart$ | async as cartBooks; let i = index"
+      *ngFor="let book of (cartBooks | orderBy:opt:dir)"
     >
       <app-cart-item
-        [index]="i"
         [cartItems]="cartBooks"
         [book]="book"
         (increase)="increaseCount($event)"

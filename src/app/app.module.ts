@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
 import {CartModule} from './cart-page/cart.module';
 import {BooksModule} from './book-page/books.module';
 import {OrdersModule} from './orders-page/orders.module';
@@ -21,7 +20,6 @@ import {AboutComponent} from './layout/about/about.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     SharedModule,
     CartModule,
     BooksModule,

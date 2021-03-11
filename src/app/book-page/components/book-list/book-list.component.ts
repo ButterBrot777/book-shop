@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BookService} from '../../services/book.service';
 import {Book} from '../../models/book-model';
 import {CartService} from '../../../cart-page/services/cart.service';
@@ -10,13 +10,14 @@ import {Observable} from 'rxjs';
   styleUrls: ['./book-list.component.scss']
 })
 export class BookListComponent implements OnInit {
-
   bookList$: Observable<Book[]>;
+  bookList: Book[];
 
   constructor(
     private bookService: BookService,
     private cartService: CartService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.bookList$ = this.bookService.getBooks();
