@@ -10,7 +10,7 @@
   <h4>Category: {{book.category}}</h4>
 
   <p>Description: {{book.description}}</p>
-  <p>isAvailable: {{book.isAvailable ? 'by now' : 'not avariable'}}</p>
+  <p>isAvailable: {{book.isAvailable ? 'by now' : 'not variable'}}</p>
   <p [ngStyle]="{'font-size':'20px', 'text-decoration': 'underline', 'font-family':'Segoe Print'}">Price: {{book.price | currency}}</p>
   <p>Date: {{dateToString(book.createDate) | date:'long'}}</p>
   <p>Description: {{book.description}}</p>
