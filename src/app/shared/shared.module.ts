@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {DirectiveModule} from './directives/directive.module';
-import {OrderByPipe, RoundPipe} from './pipes';
+import {DirectiveModule} from './directives';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {PipeModule} from './pipes/';
 
 @NgModule({
   imports: [
@@ -11,23 +11,17 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    DirectiveModule
+    DirectiveModule,
+    PipeModule,
   ],
-  declarations: [
-    OrderByPipe,
-    RoundPipe,
-  ],
+  declarations: [],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     DirectiveModule,
-    OrderByPipe,
-    RoundPipe,
+    PipeModule,
   ],
-  providers: [
-    OrderByPipe,
-    RoundPipe,
-  ],
+  providers: [],
 })
 export class SharedModule {}
