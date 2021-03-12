@@ -8,7 +8,6 @@ import {PipeModule} from './pipes/';
 
 @NgModule({
   imports: [
-    BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     CommonModule,

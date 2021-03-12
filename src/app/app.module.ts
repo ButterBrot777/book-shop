@@ -4,26 +4,32 @@ import {CartModule} from './cart-page/cart.module';
 import {BooksModule} from './book-page/books.module';
 import {OrdersModule} from './orders-page/orders.module';
 import {SharedModule} from './shared/shared.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import {LocalStorageService} from './core/services/local-storage.service';
-import {ConstantsService} from './core/constants';
-import {ConfigOptionsService} from './core/services/config-options.service';
-import {GeneratorFactory, GeneratorService} from './core/services/generator.service';
+import {LocalStorageService} from './core/services';
+import {ConstantsService} from './core';
+import {ConfigOptionsService} from './core/services';
+import {GeneratorFactory, GeneratorService} from './core/services';
 
 import {AppComponent} from './app.component';
-import {AboutComponent} from './layout/about/about.component';
+import {AboutComponent} from './layout/about';
+import {AppRoutingModule} from './app-routing.module';
+import { HeaderComponent } from './layout/header';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AboutComponent
+    AboutComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     SharedModule,
     CartModule,
     BooksModule,
     OrdersModule,
+    AppRoutingModule,
   ],
   providers: [
     {provide: LocalStorageService, useClass: LocalStorageService},
