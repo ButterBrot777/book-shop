@@ -12,6 +12,6 @@ export class BackgroundToggleDirective {
   }
 
   @HostListener('mouseleave') onMouseLeave(): void {
-    this.backgroundColor = 'white';
+    this.backgroundColor = '';
   }
 }
