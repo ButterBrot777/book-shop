@@ -6,21 +6,19 @@ import {OrdersModule} from './orders-page/orders.module';
 import {SharedModule} from './shared/shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import {LocalStorageService} from './core/services';
-import {ConstantsService} from './core';
-import {ConfigOptionsService} from './core/services';
-import {GeneratorFactory, GeneratorService} from './core/services';
+import {LocalStorageService, ConfigOptionsService, ConstantsService, GeneratorFactory, GeneratorService} from './core';
 
 import {AppComponent} from './app.component';
-import {AboutComponent} from './layout/about';
+import {AboutComponent, HeaderComponent} from './layout';
 import {AppRoutingModule} from './app-routing.module';
-import { HeaderComponent } from './layout/header';
+import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
-    HeaderComponent
+    HeaderComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

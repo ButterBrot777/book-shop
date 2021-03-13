@@ -1,8 +1,8 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import {CartBook, CartData} from '../models/cart-models';
-import {Book} from '../../book-page/models/book-model';
-import {BookService} from '../../book-page/services/book.service';
 import {BehaviorSubject, Subscription} from 'rxjs';
+
+import {CartBook, CartData} from '../models';
+import {Book, BookService} from '../../book-page';
 
 @Injectable({
   providedIn: 'root',

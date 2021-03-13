@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {RouterModule, Routes} from '@angular/router';
+
 import {CartComponent} from './cart.component';
 import {CartListComponent} from './components/cart-list';
 import {CartItemComponent} from './components/cart-item';
-import {RouterModule, Routes} from '@angular/router';
-import {AppPath} from '../shared/shared.constants';
+import {AppPath} from '../core';
 
 const routes: Routes = [
   {

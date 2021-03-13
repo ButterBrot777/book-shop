@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AppPath} from '../../core';
 
 @Component({
   selector: 'app-header',
@@ -6,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  books = AppPath.Books;
+  cart = AppPath.Cart;
+  constructor() { console.log('books, cart: ', this.books, this.cart) }
 
   ngOnInit(): void {
   }

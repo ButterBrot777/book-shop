@@ -1,11 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CartBook, CartData} from '../../models/cart-models';
-import {CartService} from '../../services/cart.service';
-import {BookService} from '../../../book-page/services/book.service';
-import {Observable, Subscription} from 'rxjs';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {EventTargetLike} from 'rxjs/internal-compatibility';
-import {FromEventTarget} from 'rxjs/internal/observable/fromEvent';
+import {Observable, Subscription} from 'rxjs';
+
+import {CartBook, CartData} from '../../models';
+import {CartService} from '../../services';
+import {BookService} from '../../../book-page/services';
 
 @Component({
   selector: 'app-cart-list',

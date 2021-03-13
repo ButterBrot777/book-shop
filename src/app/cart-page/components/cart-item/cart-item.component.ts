@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, Output} from '@angular/core';
+
 import {CartBook} from '../../models/cart-models';
 
 @Component({

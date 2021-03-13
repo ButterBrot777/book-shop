@@ -1,13 +1,9 @@
 import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
-import {AppPath} from './shared/shared.constants';
+import {AppPath} from './core';
+import {PageNotFoundComponent} from './layout/page-not-found/page-not-found.component';
 
 export const appRoutes: Routes = [
-  {
-    path: AppPath.Empty,
-    redirectTo: AppPath.Books,
-    pathMatch: 'full',
-  },
   {
     path: AppPath.Cart,
     loadChildren: () =>
@@ -17,6 +13,10 @@ export const appRoutes: Routes = [
     path: AppPath.Books,
     loadChildren: () =>
       import('./book-page/books.module').then(m => m.BooksModule)
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 

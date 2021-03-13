@@ -1,13 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AppPath} from '../shared/shared.constants';
-import {BookComponent} from './book.component';
-import {BookListComponent} from './components/book-list';
-import {BookItemComponent} from './components/book-item';
+
+import {BookComponent, BookListComponent, BookItemComponent} from '../book-page';
+import {AppPath} from '../core';
 
 const routes: Routes = [
   {
-    path: AppPath.Empty,
+    path: '',
     component: BookComponent,
     children: [
       {
