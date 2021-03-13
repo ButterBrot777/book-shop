@@ -6,7 +6,6 @@
     </button>
 
     <form
-      style="height: 40px; width: 500px; display: flex;white-space: nowrap; display: flex; align-items: center"
       [formGroup]="form"
     >
       <label>Sort by:</label>
@@ -34,19 +33,19 @@
   </div>
   <h3>Purchases in your cart: cost: {{cartData.totalCost | round | currency}}, quantity: {{cartData.totalQuantity}}</h3>
 
-  <div class="flex">
-    <div
-      class="book"
+  <div class="book__container">
+    <ng-container
       *ngFor="let book of (cartBooks | orderBy:opt:dir)"
     >
       <app-cart-item
+        class="book cart-book"
         [cartItems]="cartBooks"
         [book]="book"
         (increase)="increaseCount($event)"
         (decrease)="decreaseCount($event)"
         (remove)="removeItemFromCart($event)"
       ></app-cart-item>
-    </div>
+    </ng-container>
   </div>
 </ng-container>
 

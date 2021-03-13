@@ -1,10 +1,12 @@
-<div
-  *ngFor="let book of bookList$ | async"
-  class="book"
-  appBGToggle
->
-  <app-book-item
-    [book]="book"
-    (add)="addBook(book)"
-  ></app-book-item>
+<div class="book__container">
+  <ng-container
+    *ngFor="let book of bookList$ | async"
+  >
+    <app-book-item
+      appBGToggle
+      class="book"
+      [book]="book"
+      (add)="addBook(book)"
+    ></app-book-item>
+  </ng-container>
 </div>

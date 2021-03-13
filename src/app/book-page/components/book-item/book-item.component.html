@@ -1,24 +1,24 @@
-<div>
-  <h2 [ngClass]="{primaryColor: isPrimary}">Book name: {{book.name}}</h2>
+<div class="book__info">
+  <h2 [ngClass]="{primaryColor: isPrimary}">{{book.name}}</h2>
 
   <h3 appHighlightOnClick
       [backgroundColor]="'#28a745'"
       [borderWidth]="'2px'"
       [borderColor]="'yellow'"
-  >Author: {{book.author | titlecase}}</h3>
+  >{{book.author | titlecase}}</h3>
 
-  <h4>Category: {{book.category}}</h4>
+  <h4>{{book.category}}</h4>
 
-  <p>Description: {{book.description}}</p>
-  <p>isAvailable: {{book.isAvailable ? 'by now' : 'not variable'}}</p>
+  <p>Slogan: {{book.description}}</p>
+  <p>{{book.isAvailable ? 'by now' : 'not variable'}}</p>
   <p [ngStyle]="{'font-size':'20px', 'text-decoration': 'underline', 'font-family':'Segoe Print'}">Price: {{book.price | currency}}</p>
-  <p>Date: {{dateToString(book.createDate) | date:'long'}}</p>
-  <p>Description: {{book.description}}</p>
+  <p>Date: {{dateToString(book.createDate) | date:'short'}}</p>
+</div>
 
+<div class="button__container">
   <button
     class="btn"
     [disabled]="!book.isAvailable || book.isInCart"
     (click)="addBook()"
   >Buy</button>
 </div>
-
