@@ -13,6 +13,7 @@ import {AboutComponent, HeaderComponent} from './layout';
 import {AppRoutingModule} from './app-routing.module';
 import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import {AdminModule} from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
     AboutComponent,
     HeaderComponent,
     PageNotFoundComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +30,7 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
     CartModule,
     BooksModule,
     OrdersModule,
+    AdminModule,
     AppRoutingModule,
   ],
   providers: [

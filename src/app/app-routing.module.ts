@@ -11,6 +11,11 @@ export const appRoutes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: AppPath.Admin,
+    loadChildren: () =>
+      import('./admin/admin.module').then(m => m.AdminModule)
+  },
+  {
     path: AppPath.Cart,
     loadChildren: () =>
       import('./cart-page/cart.module').then(m => m.CartModule)

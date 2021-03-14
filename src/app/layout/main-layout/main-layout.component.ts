@@ -7,7 +7,8 @@ import {AppPath, AuthService} from '../../core';
   styleUrls: ['./main-layout.component.scss']
 })
 export class MainLayoutComponent implements OnInit {
-  books = AppPath.Books;
+  userBooksPath = AppPath.Books;
+  adminPath = AppPath.Admin;
 
   constructor(
     private authService: AuthService
