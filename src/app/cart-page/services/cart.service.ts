@@ -1,8 +1,8 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import {BehaviorSubject, Subscription} from 'rxjs';
+import {BehaviorSubject, Observable, of, Subscription} from 'rxjs';
 
 import {CartBook, CartData} from '../models';
-import {Book, BookService} from '../../book-page';
+import {Book, bookStorage} from '../../book-page';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +12,7 @@ export class CartService implements OnDestroy {
 
   // book-page storage
   private bookStorage: Book[];
+  private books$ = of(bookStorage);
 
   private cartData: CartData = {
     totalQuantity: 0,
@@ -25,10 +26,8 @@ export class CartService implements OnDestroy {
   private cartSubscription: Subscription;
   private cartBookSubscription: Subscription;
 
-  constructor(
-    private bookService: BookService
-  ) {
-    this.cartSubscription = this.bookService
+  constructor() {
+    this.cartSubscription = this
       .getBooks()
       .subscribe((books: Book[]) => (this.bookStorage = books));
   }
@@ -36,6 +35,10 @@ export class CartService implements OnDestroy {
   ngOnDestroy(): void {
     this.cartSubscription.unsubscribe();
     this.cartBookSubscription.unsubscribe();
+  }
+
+  getBooks(): Observable<Book[]> {
+    return this.books$;
   }
 
   addBook(id: number): void {

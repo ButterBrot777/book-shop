@@ -1,7 +1,7 @@
 import {Book} from './book-model';
 import {BookCategories} from '../../core/constants';
 
-const bookStorage: Book[] = [
+export const bookStorage: Book[] = [
   {
     id: 1,
     isInCart: false,
@@ -91,4 +91,3 @@ const bookStorage: Book[] = [
     author: 'Daniel Kahneman',
   },
 ];
-export default bookStorage;

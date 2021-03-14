@@ -8,7 +8,7 @@ const routes: Routes = [
     path: AppPath.Admin,
     component: AdminLayoutComponent,
     pathMatch: 'full'
-      // todo: chreate products-list component
+      // todo: create products-list component
       // {
       //   path: AppPath.ProductsList,
       //   component: ProductsListComponent

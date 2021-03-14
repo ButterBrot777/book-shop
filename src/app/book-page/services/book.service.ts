@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Book} from '../models/book-model';
+import {Book, bookStorage} from '../models';
 import {Observable, of} from 'rxjs';
-
-import bookStorage from '../models/book-store';
 
 @Injectable({
   providedIn: 'root'

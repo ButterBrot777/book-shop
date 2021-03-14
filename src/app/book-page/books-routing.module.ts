@@ -1,7 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {BookComponent, BookListComponent, BookItemComponent} from '../book-page';
+import {BookListComponent, BookItemComponent} from '../book-page';
+import {BookComponent} from './book.component';
 import {AppPath} from '../core';
 
 const routes: Routes = [
