@@ -6,7 +6,7 @@ import {AppPath} from '../core';
 
 const routes: Routes = [
   {
-    path: '',
+    path: AppPath.Books,
     component: BookComponent,
     children: [
       {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AppPath} from '../../core';
+import {AppPath, AuthService} from '../../core';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +9,16 @@ import {AppPath} from '../../core';
 export class HeaderComponent implements OnInit {
   books = AppPath.Books;
   cart = AppPath.Cart;
-  constructor() { console.log('books, cart: ', this.books, this.cart) }
+
+  constructor(
+    public authService: AuthService
+  ) {}
 
   ngOnInit(): void {
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 
 }

@@ -12,13 +12,15 @@ import {AppComponent} from './app.component';
 import {AboutComponent, HeaderComponent} from './layout';
 import {AppRoutingModule} from './app-routing.module';
 import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
+import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
     HeaderComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    MainLayoutComponent
   ],
   imports: [
     BrowserModule,

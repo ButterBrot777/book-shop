@@ -8,7 +8,7 @@ import {AppPath} from '../core';
 
 const routes: Routes = [
   {
-    path: AppPath.Empty,
+    path: AppPath.Cart,
     component: CartComponent,
     children: [
       {
