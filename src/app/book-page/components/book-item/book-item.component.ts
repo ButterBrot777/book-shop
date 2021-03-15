@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 
-import {Book} from '../../models/book-model';
+import {Book} from '../../models';
+import {AuthService, AppPath} from '../../../core';
 
 @Component({
   selector: 'app-book-item',
@@ -13,8 +14,11 @@ export class BookItemComponent {
   @Output() add = new EventEmitter<Book>();
 
   isPrimary = true;
+  adminBooksPath = AppPath.Books;
 
-  constructor() { }
+  constructor(
+    public authService: AuthService
+  ) { }
 
   dateToString(time: number): Date {
     return new Date(time);

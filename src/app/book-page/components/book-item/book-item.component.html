@@ -16,9 +16,21 @@
 </div>
 
 <div class="button__container">
-  <button
-    class="btn"
-    [disabled]="!book.isAvailable || book.isInCart"
-    (click)="addBook()"
-  >Buy</button>
+  <ng-container *ngIf="!authService.isAdmin(); else adminButtons">
+    <button
+      class="btn"
+      [disabled]="!book.isAvailable || book.isInCart"
+      (click)="addBook()"
+    >Buy</button>
+
+  </ng-container>
+
+  <ng-template #adminButtons>
+    <button
+      class="btn"
+      [routerLink]="[adminBooksPath]"
+    >Edit</button>
+
+
+  </ng-template>
 </div>

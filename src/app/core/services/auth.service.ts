@@ -26,15 +26,20 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     if (this.token === 'admin' || this.token === 'user') {
+      console.log('authenticated: true');
       return true;
     }
+    console.log('authenticated: false');
+
     return false;
   }
 
   isAdmin(): boolean {
     if (this.isAuthenticated() && this.token === 'admin') {
+      console.log('is admin');
       return true;
     }
+    console.log('not admin');
     return false;
   }
 }
