@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
 
 import {Book} from '../../models';
 import {AuthService, AppPath} from '../../../core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-book-item',
@@ -14,9 +15,11 @@ export class BookItemComponent {
   @Output() add = new EventEmitter<Book>();
 
   isPrimary = true;
-  adminBooksPath = AppPath.Books;
+  edit = AppPath.Edit;
+  product = AppPath.Product;
 
   constructor(
+    private router: Router,
     public authService: AuthService
   ) { }
 
@@ -26,5 +29,11 @@ export class BookItemComponent {
 
   addBook(): void {
     this.add.emit(this.book);
+  }
+
+  show(): void {
+    this.router.navigate(['/admin/product', this.book.id], {
+      queryParams: this.book
+    });
   }
 }

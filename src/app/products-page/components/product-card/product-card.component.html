@@ -1,0 +1,26 @@
+<div class="book product__book">
+  <h2 [ngClass]="{primaryColor: true}">{{book.name}}</h2>
+
+  <h3 appHighlightOnClick
+      [backgroundColor]="'#28a745'"
+      [borderWidth]="'2px'"
+      [borderColor]="'yellow'"
+  >{{book.author | titlecase}}</h3>
+
+  <h4>{{book.category}}</h4>
+
+  <p>Slogan: {{book.description}}</p>
+  <p>{{book.isAvailable ? 'by now' : 'not variable'}}</p>
+  <p [ngStyle]="{'font-size':'20px', 'text-decoration': 'underline', 'font-family':'Segoe Print'}">
+    Price: {{book.price | currency}}</p>
+  <p>Date: {{dateToString(book.createDate) | date:'short'}}</p>
+
+  <div class="button__container">
+    <button
+      class="btn"
+      [routerLink]="['edit']"
+      [state]="{ id:1 , name:'Angular'}"
+    >Edit
+    </button>
+  </div>
+</div>

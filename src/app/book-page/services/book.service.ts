@@ -13,4 +13,8 @@ export class BookService {
   getBooks(): Observable<Book[]> {
     return this.books$;
   }
+
+  getBookById(id: number): Book {
+    return bookStorage.find(book => book.id === id);
+  }
 }

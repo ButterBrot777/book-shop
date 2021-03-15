@@ -3,6 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {AppPath} from '../core';
 import {AdminLayoutComponent} from './components/admin-layout';
 import {BookListComponent} from '../book-page/components/book-list';
+import {BookItemComponent} from '../book-page/components/book-item';
+import {ProductCardComponent} from '../products-page/components/product-card/product-card.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,15 @@ const routes: Routes = [
         path: AppPath.ProductsList,
         component: BookListComponent,
       },
+      {
+        path: AppPath.Product,
+        children: [
+          {
+            path: ':id',
+            component: ProductCardComponent,
+          }
+        ]
+      }
     ]
   }
 ];

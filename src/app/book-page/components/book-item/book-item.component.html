@@ -28,9 +28,14 @@
   <ng-template #adminButtons>
     <button
       class="btn"
-      [routerLink]="[adminBooksPath]"
+      (click)="show()"
+      [routerLink]="[product, book.id]"
+      [state]="book"
+    >Show</button>
+    <button
+      class="btn"
+      [routerLink]="[edit]"
+      [state]="{ id:1 , name:'Angular'}"
     >Edit</button>
-
-
   </ng-template>
 </div>

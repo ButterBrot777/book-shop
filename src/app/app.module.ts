@@ -5,6 +5,7 @@ import {BooksModule} from './book-page/books.module';
 import {OrdersModule} from './orders-page/orders.module';
 import {SharedModule} from './shared/shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AdminModule} from './admin/admin.module';
 
 import {LocalStorageService, ConfigOptionsService, ConstantsService, GeneratorFactory, GeneratorService} from './core';
 
@@ -13,7 +14,7 @@ import {AboutComponent, HeaderComponent} from './layout';
 import {AppRoutingModule} from './app-routing.module';
 import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
-import {AdminModule} from './admin/admin.module';
+import { ProductCardComponent } from './products-page/components/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {AdminModule} from './admin/admin.module';
     HeaderComponent,
     PageNotFoundComponent,
     MainLayoutComponent,
+    ProductCardComponent,
   ],
   imports: [
     BrowserModule,
