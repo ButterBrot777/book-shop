@@ -1,14 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import {BookService} from '../../services';
-import {Book} from '../../models';
-import {CartService} from '../../../cart-page';
+import { Book } from '../../../core';
+import { BookService } from '../../services';
+import { CartService } from '../../../cart-page';
 
 @Component({
   selector: 'app-book-list',
   templateUrl: './book-list.component.html',
-  styleUrls: ['./book-list.component.scss']
+  styleUrls: ['./book-list.component.scss'],
 })
 export class BookListComponent implements OnInit {
   bookList$: Observable<Book[]>;
@@ -16,9 +16,8 @@ export class BookListComponent implements OnInit {
 
   constructor(
     private bookService: BookService,
-    private cartService: CartService,
-  ) {
-  }
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.bookList$ = this.bookService.getBooks();

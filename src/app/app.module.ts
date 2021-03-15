@@ -1,20 +1,28 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {CartModule} from './cart-page/cart.module';
-import {BooksModule} from './book-page/books.module';
-import {OrdersModule} from './orders-page/orders.module';
-import {SharedModule} from './shared/shared.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AdminModule} from './admin/admin.module';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {LocalStorageService, ConfigOptionsService, ConstantsService, GeneratorFactory, GeneratorService} from './core';
-
-import {AppComponent} from './app.component';
-import {AboutComponent, HeaderComponent} from './layout';
-import {AppRoutingModule} from './app-routing.module';
-import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
-import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
-import { ProductCardComponent } from './products-page/components/product-card/product-card.component';
+import { CartModule } from './cart-page';
+import { BooksModule } from './book-page';
+import { OrdersModule } from './orders-page';
+import { SharedModule } from './shared';
+import { AdminModule } from './admin';
+import {
+  LocalStorageService,
+  ConfigOptionsService,
+  ConstantsService,
+  GeneratorFactory,
+  GeneratorService,
+} from './core';
+import {
+  AboutComponent,
+  HeaderComponent,
+  PageNotFoundComponent,
+  MainLayoutComponent,
+} from './layout';
+import { ProductCardComponent } from './products-page';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
@@ -36,12 +44,15 @@ import { ProductCardComponent } from './products-page/components/product-card/pr
     AppRoutingModule,
   ],
   providers: [
-    {provide: LocalStorageService, useClass: LocalStorageService},
-    {provide: ConstantsService, useValue: ConstantsService},
+    { provide: LocalStorageService, useClass: LocalStorageService },
+    { provide: ConstantsService, useValue: ConstantsService },
     ConfigOptionsService,
-    {provide: GeneratorService, useFactory: GeneratorFactory(3), deps: [GeneratorService]}
+    {
+      provide: GeneratorService,
+      useFactory: GeneratorFactory(3),
+      deps: [GeneratorService],
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

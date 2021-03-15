@@ -1,17 +1,10 @@
-import {NgModule} from '@angular/core';
-import {HighlightOnClickDirective} from './highlight-on-click/highlight-on-click.directive';
-import {BackgroundToggleDirective} from './background-toggle/background-toggle.directive';
+import { NgModule } from '@angular/core';
+
+import { HighlightOnClickDirective } from './highlight-on-click';
+import { BackgroundToggleDirective } from './background-toggle';
 
 @NgModule({
-  imports: [],
-  declarations: [
-    HighlightOnClickDirective,
-    BackgroundToggleDirective,
-  ],
-  exports: [
-    HighlightOnClickDirective,
-    BackgroundToggleDirective,
-  ],
-  providers: [],
+  declarations: [HighlightOnClickDirective, BackgroundToggleDirective],
+  exports: [HighlightOnClickDirective, BackgroundToggleDirective],
 })
 export class DirectiveModule {}

@@ -1,15 +1,14 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Observable, Subscription} from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable, Subscription } from 'rxjs';
 
-import {CartBook, CartData} from '../../models';
-import {CartService} from '../../services';
-import {BookService} from '../../../book-page/services';
+import { CartBook, CartData } from '../../models';
+import { CartService } from '../../services';
 
 @Component({
   selector: 'app-cart-list',
   templateUrl: './cart-list.component.html',
-  styleUrls: ['./cart-list.component.scss']
+  styleUrls: ['./cart-list.component.scss'],
 })
 export class CartListComponent implements OnInit, OnDestroy {
   cartBooks: CartBook[] = [];
@@ -17,30 +16,26 @@ export class CartListComponent implements OnInit, OnDestroy {
   cart$: Observable<CartBook[]>;
   isCartEmpty = true;
   orderOptions = [
-    {id: 1, option: 'name', name: 'name'},
-    {id: 2, option: 'price', name: 'price'},
-    {id: 3, option: 'bookCount', name: 'count'},
+    { id: 1, option: 'name', name: 'name' },
+    { id: 2, option: 'price', name: 'price' },
+    { id: 3, option: 'bookCount', name: 'count' },
   ];
   orderDirection = [
-    {id: 1, name: 'descending'},
-    {id: 2, name: 'ascending'},
+    { id: 1, name: 'descending' },
+    { id: 2, name: 'ascending' },
   ];
   opt = 'name';
   dir = false;
 
   form = new FormGroup({
     sortParams: new FormControl('name', Validators.required),
-    sortDirection: new FormControl('', Validators.required)
+    sortDirection: new FormControl('', Validators.required),
   });
 
   private cartSubscription: Subscription;
   private cartDataSubscription: Subscription;
 
-  constructor(
-    private cartService: CartService,
-    private bookService: BookService,
-  ) {
-  }
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.cart$ = this.cartService.cartSubject;
@@ -48,9 +43,11 @@ export class CartListComponent implements OnInit, OnDestroy {
       this.cartBooks = cart;
       this.isCartEmpty = !!this.cartBooks.length;
     });
-    this.cartDataSubscription = this.cartService.cartDataSubject.subscribe((data: CartData) => {
-      this.cartData = data;
-    });
+    this.cartDataSubscription = this.cartService.cartDataSubject.subscribe(
+      (data: CartData) => {
+        this.cartData = data;
+      }
+    );
   }
 
   ngOnDestroy(): void {
@@ -75,7 +72,7 @@ export class CartListComponent implements OnInit, OnDestroy {
   }
 
   changeOrderOption(e: Event): void {
-    this.opt = ((e.target) as HTMLInputElement).value;
+    this.opt = (e.target as HTMLInputElement).value;
   }
 
   changeOrderDirection(): void {

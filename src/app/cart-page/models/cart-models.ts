@@ -1,4 +1,4 @@
-import {Book} from '../../book-page/models/book-model';
+import { Book } from '../../core';
 
 export interface CartBook extends Book {
   bookCount: number;

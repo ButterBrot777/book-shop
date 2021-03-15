@@ -1,14 +1,19 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
+import { Router } from '@angular/router';
 
-import {Book} from '../../models';
-import {AuthService, AppPath} from '../../../core';
-import {Router} from '@angular/router';
+import { AuthService, AppPath, Book } from '../../../core';
 
 @Component({
   selector: 'app-book-item',
   templateUrl: './book-item.component.html',
   styleUrls: ['./book-item.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BookItemComponent {
   @Input() book: Book;
@@ -18,10 +23,7 @@ export class BookItemComponent {
   edit = AppPath.Edit;
   product = AppPath.Product;
 
-  constructor(
-    private router: Router,
-    public authService: AuthService
-  ) { }
+  constructor(private router: Router, public authService: AuthService) {}
 
   dateToString(time: number): Date {
     return new Date(time);
@@ -33,7 +35,7 @@ export class BookItemComponent {
 
   show(): void {
     this.router.navigate(['/admin/product', this.book.id], {
-      queryParams: this.book
+      queryParams: this.book,
     });
   }
 }

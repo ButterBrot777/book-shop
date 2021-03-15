@@ -1,23 +1,25 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {AppConstVersion} from '../../models/app-const-version';
-import {CONSTANTS} from '../../core/services/constants.service';
-import {RANDOM_STRING} from '../../core/services/generator.service';
-import {LocalStorageService} from '../../core/services/local-storage.service';
-import {ConfigOptionsService} from '../../core/services/config-options.service';
+import { Component, Inject, OnInit } from '@angular/core';
+
+import {
+  CONSTANTS,
+  RANDOM_STRING,
+  LocalStorageService,
+  ConfigOptionsService,
+  AppConstVersion,
+} from '../../core';
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+  styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent implements OnInit {
-
   constructor(
     @Inject(CONSTANTS) private constants: AppConstVersion,
     @Inject(RANDOM_STRING) private randomString: string,
     private localStorage: LocalStorageService,
     private configOptionsService: ConfigOptionsService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.checkConstantService();
@@ -25,8 +27,7 @@ export class AboutComponent implements OnInit {
   }
 
   checkConstantService(): void {
-    if (this.constants.App === 'TaskManager' &&
-    this.constants.Ver === '1.0') {
+    if (this.constants.App === 'TaskManager' && this.constants.Ver === '1.0') {
       console.log('Constants service works correct');
     } else {
       console.log('Constants service works wrong');
@@ -55,7 +56,7 @@ export class AboutComponent implements OnInit {
   }
 
   setConfig(): void {
-    this.configOptionsService.setOptions({login: 'Wasia513'});
+    this.configOptionsService.setOptions({ login: 'Wasia513' });
     console.log('config options was added');
   }
   getOptions(): void {

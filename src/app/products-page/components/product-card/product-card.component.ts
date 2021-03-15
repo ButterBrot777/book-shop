@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
-import {BookService} from '../../../book-page/services';
-import {Book} from '../../../book-page/models';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { Book } from '../../../core';
+import { BookService } from '../../../book-page';
 
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.scss']
+  styleUrls: ['./product-card.component.scss'],
 })
 export class ProductCardComponent implements OnInit {
   private readonly bookId: number;
   book: Book;
-
 
   constructor(
     private router: Router,
@@ -22,8 +22,7 @@ export class ProductCardComponent implements OnInit {
     this.book = bookService.getBookById(this.bookId);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   dateToString(time: number): Date {
     return new Date(time);

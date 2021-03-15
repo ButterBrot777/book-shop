@@ -1,9 +1,9 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import {BookListComponent, BookItemComponent} from '../book-page';
-import {BookComponent} from './book.component';
-import {AppPath} from '../core';
+import { AppPath } from '../core';
+import { BookListComponent, BookItemComponent } from './components';
+import { BookComponent } from './book.component';
 
 const routes: Routes = [
   {
@@ -13,25 +13,13 @@ const routes: Routes = [
       {
         path: AppPath.Empty,
         component: BookListComponent,
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];
 
 @NgModule({
-  declarations: [],
-  imports: [
-    RouterModule.forChild(routes)
-  ],
-  exports: [
-    RouterModule
-  ],
-  providers: []
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class BooksRoutingModule {
-  static components = [
-    BookComponent,
-    BookListComponent,
-    BookItemComponent
-  ];
-}
+export class BooksRoutingModule {}
