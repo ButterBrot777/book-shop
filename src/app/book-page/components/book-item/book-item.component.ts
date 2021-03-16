@@ -23,7 +23,10 @@ export class BookItemComponent {
   edit = AppPath.Edit;
   product = AppPath.Product;
 
-  constructor(private router: Router, public authService: AuthService) {}
+  constructor(
+    private router: Router,
+    public authService: AuthService
+  ) { }
 
   dateToString(time: number): Date {
     return new Date(time);
@@ -34,8 +37,6 @@ export class BookItemComponent {
   }
 
   show(): void {
-    this.router.navigate(['/admin/product', this.book.id], {
-      queryParams: this.book,
-    });
+    this.router.navigate(['/admin/product', this.book.id]);
   }
 }

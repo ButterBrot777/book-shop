@@ -6,7 +6,7 @@
   <ng-container *ngIf="authService.isAuthenticated()">
   <ul *ngIf="!authService.isAdmin(); else adminHeader">
     <li routerLinkActive="active">
-      <a [routerLink]="[books]">Книги</a>
+      <a [routerLink]="['books']">Книги</a>
     </li>
     <li routerLinkActive="active">
       <a [routerLink]="[cart]">Корзина</a>
@@ -25,7 +25,7 @@
         <a [routerLink]="['admin', 'products-list']">Товары</a>
       </li>
       <li routerLinkActive="active">
-        <a [routerLink]="[cart]">Заказы</a>
+        <a [routerLink]="[cart]">Заказы(not working)</a>
       </li>
       <li>
         <a

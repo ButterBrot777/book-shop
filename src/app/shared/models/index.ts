@@ -1,2 +1,2 @@
-export * from './config-options';
-export * from './user';
+export * from './config-options.model';
+export * from './user.model';
