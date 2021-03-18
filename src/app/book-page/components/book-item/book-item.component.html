@@ -34,8 +34,7 @@
     >Show</button>
     <button
       class="btn"
-      [routerLink]="[edit]"
-      [state]="{ id:1 , name:'Angular'}"
-    >Edit</button>
+      (click)="edit()"
+    >Edit Item</button>
   </ng-template>
 </div>

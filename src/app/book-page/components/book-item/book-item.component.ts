@@ -21,7 +21,7 @@ export class BookItemComponent implements OnInit, OnDestroy{
   @Output() add = new EventEmitter<Book>();
 
   isPrimary = true;
-  edit = AppPath.Edit;
+  // edit = AppPath.Edit;
   product = AppPath.Product;
   isAdmin: boolean;
 
@@ -50,5 +50,8 @@ export class BookItemComponent implements OnInit, OnDestroy{
 
   show(): void {
     this.router.navigate(['/admin/product', this.book.id]);
+  }
+  edit(): void {
+    this.router.navigate(['/admin/product', this.book.id, 'edit']);
   }
 }
