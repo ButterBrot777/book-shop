@@ -16,7 +16,7 @@
 </div>
 
 <div class="button__container">
-  <ng-container *ngIf="!authService.isAdmin(); else adminButtons">
+  <ng-container *ngIf="!isAdmin; else adminButtons">
     <button
       class="btn"
       [disabled]="!book.isAvailable || book.isInCart"

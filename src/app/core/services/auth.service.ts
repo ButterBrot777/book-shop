@@ -1,9 +1,14 @@
 import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  public isAdminSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public isAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
+  private isAuthenticated: boolean;
 
   constructor() {
   }
@@ -14,6 +19,8 @@ export class AuthService {
 
   private setToken(token: string): void {
     localStorage.setItem('token', token);
+    this.checkIsAuthenticated();
+    this.checkIsAdmin();
   }
 
   get token(): string {
@@ -22,24 +29,25 @@ export class AuthService {
 
   logout(): void {
     this.setToken(null);
+    this.isAuthenticatedSubject.next(false);
+    this.isAdminSubject.next(true);
   }
 
-  isAuthenticated(): boolean {
+  checkIsAuthenticated(): void {
     if (this.token === 'admin' || this.token === 'user') {
-      console.log('authenticated: true');
-      return true;
+      this.isAuthenticatedSubject.next(true);
+      this.isAuthenticated = true;
+    } else {
+      this.isAuthenticatedSubject.next(false);
+      this.isAuthenticated = false;
     }
-    console.log('authenticated: false');
-
-    return false;
   }
 
-  isAdmin(): boolean {
-    if (this.isAuthenticated() && this.token === 'admin') {
-      console.log('is admin');
-      return true;
+  checkIsAdmin(): void {
+    if (this.isAuthenticated && this.token === 'admin') {
+      this.isAdminSubject.next(true);
+    } else {
+      this.isAdminSubject.next(false);
     }
-    console.log('not admin');
-    return false;
   }
 }

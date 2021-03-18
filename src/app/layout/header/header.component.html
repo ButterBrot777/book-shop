@@ -3,8 +3,8 @@
     <a routerLink="/">Book Shop</a>
   </h1>
 
-  <ng-container *ngIf="authService.isAuthenticated()">
-  <ul *ngIf="!authService.isAdmin(); else adminHeader">
+  <ng-container *ngIf="isAuthenticated">
+  <ul *ngIf="!isAdmin; else adminHeader">
     <li routerLinkActive="active">
       <a [routerLink]="['books']">Книги</a>
     </li>

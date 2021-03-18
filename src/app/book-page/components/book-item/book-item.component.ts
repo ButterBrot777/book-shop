@@ -2,12 +2,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  Input,
+  Input, OnDestroy, OnInit,
   Output,
 } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService, AppPath, Book } from '../../../core';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-book-item',
@@ -15,18 +16,29 @@ import { AuthService, AppPath, Book } from '../../../core';
   styleUrls: ['./book-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BookItemComponent {
+export class BookItemComponent implements OnInit, OnDestroy{
   @Input() book: Book;
   @Output() add = new EventEmitter<Book>();
 
   isPrimary = true;
   edit = AppPath.Edit;
   product = AppPath.Product;
+  isAdmin: boolean;
+
+  private isAdminSubscription: Subscription;
 
   constructor(
     private router: Router,
     public authService: AuthService
   ) { }
+
+  ngOnInit(): void {
+    this.isAdminSubscription = this.authService.isAdminSubject.subscribe(status => this.isAdmin = status);
+  }
+
+  ngOnDestroy(): void {
+    this.isAdminSubscription.unsubscribe();
+  }
 
   dateToString(time: number): Date {
     return new Date(time);
