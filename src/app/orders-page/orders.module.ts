@@ -1,10 +1,9 @@
-import {NgModule} from '@angular/core';
-import {SharedModule} from '../shared/shared.module';
+import { NgModule } from '@angular/core';
+
+import { SharedModule } from '../shared';
 
 @NgModule({
-  imports: [
-    SharedModule,
-  ],
+  imports: [SharedModule],
   declarations: [],
 })
 export class OrdersModule {}

@@ -1,4 +1,4 @@
-import {BookCategories} from '../../core/constants';
+import { BookCategories } from '../constants';
 
 export interface Book {
   id?: number;

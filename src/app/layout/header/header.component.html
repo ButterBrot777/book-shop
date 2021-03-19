@@ -1,0 +1,41 @@
+<nav class="navbar bg-primary">
+  <h1>
+    <a routerLink="/">Book Shop</a>
+  </h1>
+
+  <ng-container *ngIf="isAuthenticated">
+  <ul *ngIf="!isAdmin; else adminHeader">
+    <li routerLinkActive="active">
+      <a [routerLink]="['books']">Книги</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="[cart]">Корзина</a>
+    </li>
+    <li>
+      <a
+        (click)="logout()"
+        [routerLink]="['/']">Logout</a>
+    </li>
+  </ul>
+  </ng-container>
+
+  <ng-template #adminHeader>
+    <ul>
+      <li routerLinkActive="active">
+        <a [routerLink]="['admin', 'products-list']">Товары</a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="[cart]">Заказы(not working)</a>
+      </li>
+      <li>
+        <a
+          (click)="logout()"
+          [routerLink]="['/']">Logout</a>
+      </li>
+    </ul>
+  </ng-template>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

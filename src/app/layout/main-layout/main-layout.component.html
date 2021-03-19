@@ -1,0 +1,20 @@
+<div class="login">
+  <h2>Please login as:</h2>
+  <ul class="button__container">
+    <li>
+      <button
+        class="btn"
+        (click)="login('user')"
+        [routerLink]="[userBooksPath]">User</button>
+    </li>
+    <li>
+      <p class="small-word">or</p>
+    </li>
+    <li>
+      <button
+        class="btn"
+        (click)="login('admin')"
+        [routerLink]="[adminPath]">Admin</button>
+    </li>
+  </ul>
+</div>

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
+
 import {LocalStorageService} from './local-storage.service';
-import {ConfigOptions} from '../../shared/models/config-options';
+import {ConfigOptions} from '../../shared';
 
 @Injectable()
 export class ConfigOptionsService {

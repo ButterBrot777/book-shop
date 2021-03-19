@@ -1,0 +1,14 @@
+:host {
+  margin: 0 auto;
+}
+.form__edit {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    width: 30rem;
+  }
+}
+form .button__container {
+  margin-top: 1rem;
+}

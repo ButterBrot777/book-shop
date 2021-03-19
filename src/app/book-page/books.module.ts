@@ -1,18 +1,13 @@
-import {NgModule} from '@angular/core';
-import {SharedModule} from '../shared/shared.module';
-import {BookListComponent} from './components/book-list/book-list.component';
-import {BookItemComponent} from './components/book-item/book-item.component';
+import { NgModule } from '@angular/core';
+
+import { SharedModule } from '../shared';
+import { BooksRoutingModule } from './books-routing.module';
+import { BookItemComponent, BookListComponent } from './components';
 import { BookComponent } from './book.component';
 
 @NgModule({
-  imports: [
-    SharedModule
-  ],
-  declarations: [
-    BookListComponent,
-    BookItemComponent,
-    BookComponent
-  ],
+  imports: [SharedModule, BooksRoutingModule],
+  declarations: [BookItemComponent, BookListComponent, BookComponent],
   exports: [
     BookListComponent
   ]

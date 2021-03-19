@@ -1,24 +1,43 @@
-import {Component, Input, OnInit, EventEmitter, Output, OnDestroy} from '@angular/core';
-import {Book} from '../../models/book-model';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input, OnDestroy, OnInit,
+  Output,
+} from '@angular/core';
+import { Router } from '@angular/router';
+
+import { AuthService, AppPath, Book } from '../../../core';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-book-item',
   templateUrl: './book-item.component.html',
-  styleUrls: ['./book-item.component.scss']
+  styleUrls: ['./book-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BookItemComponent implements OnInit, OnDestroy {
+export class BookItemComponent implements OnInit, OnDestroy{
   @Input() book: Book;
   @Output() add = new EventEmitter<Book>();
 
   isPrimary = true;
+  // edit = AppPath.Edit;
+  product = AppPath.Product;
+  isAdmin: boolean;
 
-  constructor() { }
+  private isAdminSubscription: Subscription;
+
+  constructor(
+    private router: Router,
+    public authService: AuthService
+  ) { }
 
   ngOnInit(): void {
+    this.isAdminSubscription = this.authService.isAdminSubject.subscribe(status => this.isAdmin = status);
   }
 
   ngOnDestroy(): void {
-    console.log('Book was destroyed');
+    this.isAdminSubscription.unsubscribe();
   }
 
   dateToString(time: number): Date {
@@ -27,5 +46,12 @@ export class BookItemComponent implements OnInit, OnDestroy {
 
   addBook(): void {
     this.add.emit(this.book);
+  }
+
+  show(): void {
+    this.router.navigate(['/admin/product', this.book.id]);
+  }
+  edit(): void {
+    this.router.navigate(['/admin/product', this.book.id, 'edit']);
   }
 }

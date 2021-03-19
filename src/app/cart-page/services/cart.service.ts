@@ -1,8 +1,8 @@
-import {Injectable, OnDestroy} from '@angular/core';
-import {CartBook, CartData} from '../models/cart-models';
-import {Book} from '../../book-page/models/book-model';
-import {BookService} from '../../book-page/services/book.service';
-import {BehaviorSubject, Subscription} from 'rxjs';
+import { Injectable, OnDestroy } from '@angular/core';
+import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
+
+import { Book, BOOK_STORAGE } from '../../core';
+import { CartBook, CartData } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,8 @@ export class CartService implements OnDestroy {
   private cart: CartBook[] = [];
 
   // book-page storage
-  private bookStorage: Book[];
+  private BOOK_STORAGE: Book[];
+  private books$ = of(BOOK_STORAGE);
 
   private cartData: CartData = {
     totalQuantity: 0,
@@ -19,23 +20,29 @@ export class CartService implements OnDestroy {
   };
 
   // Observable of cart
-  public cartSubject: BehaviorSubject<Array<CartBook>> = new BehaviorSubject(this.cart);
-  public cartDataSubject: BehaviorSubject<CartData> = new BehaviorSubject(this.cartData);
+  public cartSubject: BehaviorSubject<Array<CartBook>> = new BehaviorSubject(
+    this.cart
+  );
+  public cartDataSubject: BehaviorSubject<CartData> = new BehaviorSubject(
+    this.cartData
+  );
 
   private cartSubscription: Subscription;
   private cartBookSubscription: Subscription;
 
-  constructor(
-    private bookService: BookService
-  ) {
-    this.cartSubscription = this.bookService
-      .getBooks()
-      .subscribe((books: Book[]) => (this.bookStorage = books));
+  constructor() {
+    this.cartSubscription = this.getBooks().subscribe(
+      (books: Book[]) => (this.BOOK_STORAGE = books)
+    );
   }
 
   ngOnDestroy(): void {
     this.cartSubscription.unsubscribe();
     this.cartBookSubscription.unsubscribe();
+  }
+
+  getBooks(): Observable<Book[]> {
+    return this.books$;
   }
 
   addBook(id: number): void {
@@ -69,7 +76,7 @@ export class CartService implements OnDestroy {
   }
 
   removeBook(id: number): void {
-    const indexOfBook = this.cart.findIndex(book => book.id === id);
+    const indexOfBook = this.cart.findIndex((book) => book.id === id);
     this.cart.splice(indexOfBook, 1);
     this.updateCartData();
   }
@@ -108,10 +115,10 @@ export class CartService implements OnDestroy {
 
   // check if book-page is already in the cart-page
   findBookInCart(id: number): CartBook {
-    return this.cart.find(item => item.id === id);
+    return this.cart.find((item) => item.id === id);
   }
 
   findBookInStorage(id: number): Book {
-    return this.bookStorage?.find((book: Book) => book.id === id);
+    return this.BOOK_STORAGE?.find((book: Book) => book.id === id);
   }
 }
