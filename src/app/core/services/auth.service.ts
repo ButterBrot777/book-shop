@@ -9,6 +9,7 @@ export class AuthService {
   public isAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   private isAuthenticated: boolean;
+  private isAdmin: boolean;
 
   constructor() {
   }
@@ -43,11 +44,17 @@ export class AuthService {
     }
   }
 
+  get getAdminStatus(): boolean {
+    return this.isAdmin;
+  }
+
   checkIsAdmin(): void {
     if (this.isAuthenticated && this.token === 'admin') {
       this.isAdminSubject.next(true);
+      this.isAdmin = true;
     } else {
       this.isAdminSubject.next(false);
+      this.isAdmin = false;
     }
   }
 }

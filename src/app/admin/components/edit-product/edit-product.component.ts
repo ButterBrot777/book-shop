@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Params, Router} from '@angular/router';
-import {switchMap} from 'rxjs/operators';
+import {ActivatedRoute, Data, Router} from '@angular/router';
 
 import {BookService} from '../../../book-page/services';
 import {Book} from '../../../core/models';
@@ -29,23 +28,20 @@ export class EditProductComponent implements OnInit {
     private bookService: BookService
   ) {
   }
+
   ngOnInit(): void {
-    this.activatedRoute.params
-      .pipe(
-        switchMap((params: Params) => {
-          this.bookId = +params.id;
-          return this.bookService.getBookById(+params.id);
-        })
-      ).subscribe(book => {
-        this.form = new FormGroup({
-          name: new FormControl(book.name, Validators.required),
-          author: new FormControl(book.author, Validators.required),
-          category: new FormControl(book.category, Validators.required),
-          description: new FormControl(book.description, Validators.required),
-          isAvailable: new FormControl(book.isAvailable, Validators.required),
-          price: new FormControl(book.price, Validators.required),
-          createDate: new FormControl()
-        });
+    this.activatedRoute.data.subscribe((response: Data) => {
+      const book = response.bookToEdit;
+
+      this.form = new FormGroup({
+        name: new FormControl(book.name, Validators.required),
+        author: new FormControl(book.author, Validators.required),
+        category: new FormControl(book.category, Validators.required),
+        description: new FormControl(book.description, Validators.required),
+        isAvailable: new FormControl(book.isAvailable, Validators.required),
+        price: new FormControl(book.price, Validators.required),
+        createDate: new FormControl()
+      });
     });
   }
 

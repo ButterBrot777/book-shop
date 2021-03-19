@@ -27,8 +27,6 @@ export class BookService implements OnDestroy {
     return of(this.books.find((book) => book.id === id));
   }
 
-  addBookToStorage(): void {}
-
   editBook(book: Book): void {
     this.books = [
       ...this.books.filter(locBook => locBook.id !== book.id),
