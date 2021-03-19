@@ -1,0 +1,76 @@
+<form
+  class="form__edit"
+  [formGroup]="form"
+  (ngSubmit)="submitForm()"
+>
+  <label>
+    Book name:
+    <input type="text" formControlName="name">
+  </label>
+
+  <label>
+    Author:
+    <input type="text" formControlName="author">
+  </label>
+
+  <label>
+    Category:
+    <select
+      name="category"
+      id="selectCategory"
+      formControlName="category"
+    >
+      <option
+        *ngFor="let option of options"
+        [value]="option.option"
+      >{{option.option}}</option>
+    </select>
+    <!--    <input type="text" formControlName="category">-->
+  </label>
+
+  <label>
+    Description:
+    <textarea
+      type="text"
+      formControlName="description"
+      placeholder="Write book description"
+      rows="10"
+    ></textarea>
+  </label>
+
+  <label class="text_white">
+    Available:
+    <select
+      name="available"
+      id="available"
+      formControlName="isAvailable"
+    >
+      <option
+        [value]="true"
+        [selected]="true"
+      >
+        available
+      </option>
+
+      <option
+        [value]="false"
+        [selected]="false"
+      >
+        not available
+      </option>
+    </select>
+  </label>
+
+  <label style="color: white">
+    Price:
+    <input type="text" formControlName="price">
+  </label>
+
+  <div class="button__container">
+    <button
+      class="btn btn-primary"
+      type="submit"
+    >Add</button>
+  </div>
+
+</form>

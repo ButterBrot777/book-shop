@@ -36,4 +36,8 @@ export class BookService implements OnDestroy {
     ];
     this.books$.next(this.books);
   }
+
+  addNewBook(book: Book): void {
+    this.books$.next([...this.books, book]);
+  }
 }

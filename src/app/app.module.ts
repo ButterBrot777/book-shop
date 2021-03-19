@@ -23,6 +23,7 @@ import {
 import { ProductCardComponent } from './products-page';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ProductsListComponent } from './products-page/components/products-list/products-list.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AppComponent } from './app.component';
     PageNotFoundComponent,
     MainLayoutComponent,
     ProductCardComponent,
+    ProductsListComponent,
   ],
   imports: [
     BrowserModule,
